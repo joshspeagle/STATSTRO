@@ -2,6 +2,7 @@
  * MCMC Sampler Hero Animation
  * Simulates a Metropolis-Hastings sampler exploring a 2D posterior,
  * visualized as a celestial cartography map with contour lines.
+ * The cursor creates a gravitational well that biases sampling.
  */
 (function () {
   const canvas = document.getElementById('hero-canvas');
@@ -20,22 +21,26 @@
   const COLORS = {
     navy: '#0B1D3A',
     gold: '#D4A843',
-    goldFaint: 'rgba(212, 168, 67, 0.08)',
     teal: '#2A9D8F',
-    tealFaint: 'rgba(42, 157, 143, 0.15)',
     cream: '#F5F0E8',
-    creamFaint: 'rgba(245, 240, 232, 0.03)',
     gridLine: 'rgba(245, 240, 232, 0.04)',
-    starDim: 'rgba(245, 240, 232, 0.3)',
-    starBright: 'rgba(245, 240, 232, 0.8)',
   };
 
-  // Target distribution: mixture of 2D Gaussians (looks like a constellation)
+  // Target distribution: 5 modes arranged like a scattered constellation
+  // (wide spatial spread, no unfortunate alignments)
   const modes = [
-    { x: 0.35, y: 0.4, sx: 0.08, sy: 0.06, w: 0.4, rho: 0.3 },
-    { x: 0.65, y: 0.55, sx: 0.10, sy: 0.07, w: 0.35, rho: -0.2 },
-    { x: 0.5, y: 0.7, sx: 0.06, sy: 0.09, w: 0.25, rho: 0.1 },
+    { x: 0.20, y: 0.30, sx: 0.06, sy: 0.05, w: 0.30, rho:  0.2  },  // upper-left
+    { x: 0.75, y: 0.25, sx: 0.07, sy: 0.05, w: 0.25, rho: -0.1  },  // upper-right
+    { x: 0.45, y: 0.55, sx: 0.08, sy: 0.06, w: 0.20, rho:  0.0  },  // center
+    { x: 0.15, y: 0.75, sx: 0.05, sy: 0.07, w: 0.15, rho: -0.3  },  // lower-left
+    { x: 0.80, y: 0.70, sx: 0.06, sy: 0.08, w: 0.20, rho:  0.15 },  // lower-right
   ];
+
+  // Cursor state (normalized 0-1 coordinates, null when off-canvas)
+  let cursorX = null;
+  let cursorY = null;
+  const cursorWeight = 0.15;  // how strongly the cursor attracts
+  const cursorSD = 0.08;      // spread of the cursor's influence
 
   // Background stars
   let stars = [];
@@ -49,7 +54,6 @@
     canvas.height = height * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    // Regenerate stars on resize
     stars = [];
     for (let i = 0; i < 150; i++) {
       stars.push({
@@ -61,7 +65,6 @@
       });
     }
 
-    // Recompute contour grid
     computeContourGrid();
   }
 
@@ -73,10 +76,22 @@
     return mode.w * Math.exp(-0.5 * z);
   }
 
-  function targetDensity(x, y) {
+  // Static density (without cursor) for contour grid
+  function baseDensity(x, y) {
     let p = 0;
     for (const mode of modes) {
       p += gaussianPDF(x, y, mode);
+    }
+    return p;
+  }
+
+  // Full density including cursor attraction
+  function targetDensity(x, y) {
+    let p = baseDensity(x, y);
+    if (cursorX !== null && cursorY !== null) {
+      const dx = (x - cursorX) / cursorSD;
+      const dy = (y - cursorY) / cursorSD;
+      p += cursorWeight * Math.exp(-0.5 * (dx * dx + dy * dy));
     }
     return p;
   }
@@ -89,7 +104,7 @@
       for (let j = 0; j < gridResolution; j++) {
         const x = i / (gridResolution - 1);
         const y = j / (gridResolution - 1);
-        const val = targetDensity(x, y);
+        const val = baseDensity(x, y);
         grid[i][j] = val;
         if (val > maxVal) maxVal = val;
       }
@@ -169,7 +184,6 @@
     const levels = [0.08, 0.15, 0.25, 0.4, 0.6];
     const alphas = [0.06, 0.08, 0.10, 0.13, 0.18];
 
-    // Fade in contours based on number of samples
     const contourFade = Math.min(1, samples.length / 300);
 
     for (let l = 0; l < levels.length; l++) {
@@ -191,7 +205,7 @@
       }
     }
 
-    // Draw contour lines
+    // Contour lines
     if (contourFade > 0.3) {
       const lineAlpha = (contourFade - 0.3) * 1.4;
       const lineLevels = [0.15, 0.35, 0.55];
@@ -203,7 +217,6 @@
         const cellW = width / (gridResolution - 1);
         const cellH = height / (gridResolution - 1);
 
-        // Simple marching-squares-ish contour lines
         for (let i = 0; i < gridResolution - 1; i++) {
           for (let j = 0; j < gridResolution - 1; j++) {
             const v00 = grid[i][j] > threshold;
@@ -225,6 +238,25 @@
     }
   }
 
+  // Draw a subtle glow at cursor position
+  function drawCursorAttractor() {
+    if (cursorX === null || cursorY === null) return;
+
+    const cx = cursorX * width;
+    const cy = cursorY * height;
+    const radius = cursorSD * Math.max(width, height);
+
+    const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+    gradient.addColorStop(0, 'rgba(212, 168, 67, 0.08)');
+    gradient.addColorStop(0.5, 'rgba(212, 168, 67, 0.03)');
+    gradient.addColorStop(1, 'rgba(212, 168, 67, 0)');
+
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
   function drawChain() {
     if (chain.length < 2) return;
 
@@ -234,7 +266,6 @@
     ctx.beginPath();
     ctx.moveTo(chain[0].x * width, chain[0].y * height);
     for (let i = 1; i < chain.length; i++) {
-      const alpha = i / chain.length;
       ctx.lineTo(chain[i].x * width, chain[i].y * height);
     }
     ctx.stroke();
@@ -246,9 +277,6 @@
       s.age++;
 
       const recentFraction = i / samples.length;
-      const ageFade = Math.min(1, s.age / 30);
-
-      // Recent samples glow gold, older ones fade to teal
       const isRecent = i > samples.length - 20;
 
       if (isRecent) {
@@ -267,7 +295,7 @@
     }
   }
 
-  // Constellation lines connecting high-density regions
+  // Constellation lines connecting modes
   function drawConstellationLines() {
     if (samples.length < 200) return;
 
@@ -278,13 +306,13 @@
     ctx.lineWidth = 1;
     ctx.setLineDash([4, 8]);
 
-    for (let i = 0; i < modeCenters.length; i++) {
-      for (let j = i + 1; j < modeCenters.length; j++) {
-        ctx.beginPath();
-        ctx.moveTo(modeCenters[i].x, modeCenters[i].y);
-        ctx.lineTo(modeCenters[j].x, modeCenters[j].y);
-        ctx.stroke();
-      }
+    // Connect in a constellation pattern (not all-to-all)
+    const connections = [[0, 2], [2, 1], [2, 3], [2, 4], [0, 3], [1, 4]];
+    for (const [a, b] of connections) {
+      ctx.beginPath();
+      ctx.moveTo(modeCenters[a].x, modeCenters[a].y);
+      ctx.lineTo(modeCenters[b].x, modeCenters[b].y);
+      ctx.stroke();
     }
 
     ctx.setLineDash([]);
@@ -301,6 +329,7 @@
     drawGrid();
     drawStars();
     drawContours();
+    drawCursorAttractor();
     drawConstellationLines();
     drawChain();
     drawSamples();
@@ -310,13 +339,34 @@
       mcmcStep();
     }
 
-    // Slow down sampling once we have enough
     if (samples.length > 800) {
       samplesPerFrame = 1;
     }
 
     animationId = requestAnimationFrame(draw);
   }
+
+  // Mouse/touch tracking
+  function updateCursor(e) {
+    const rect = canvas.getBoundingClientRect();
+    cursorX = (e.clientX - rect.left) / rect.width;
+    cursorY = (e.clientY - rect.top) / rect.height;
+  }
+
+  canvas.addEventListener('mousemove', updateCursor);
+  canvas.addEventListener('mouseleave', () => {
+    cursorX = null;
+    cursorY = null;
+  });
+  canvas.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 0) {
+      updateCursor(e.touches[0]);
+    }
+  }, { passive: true });
+  canvas.addEventListener('touchend', () => {
+    cursorX = null;
+    cursorY = null;
+  });
 
   // Pause when not visible
   const observer = new IntersectionObserver(
