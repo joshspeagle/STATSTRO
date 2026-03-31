@@ -1,0 +1,159 @@
+// Schedule
+
+.schedule-tabs {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-2xl;
+}
+
+.schedule-tab {
+  padding: $spacing-md $spacing-xl;
+  background: none;
+  border: 2px solid rgba($navy, 0.15);
+  border-radius: $border-radius;
+  font-family: $font-body;
+  font-size: $font-size-base;
+  font-weight: 600;
+  color: lighten($navy, 20%);
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    border-color: $gold;
+    color: $navy;
+  }
+
+  &.active {
+    background: $navy;
+    border-color: $navy;
+    color: $cream;
+  }
+}
+
+.schedule-day {
+  display: none;
+  max-width: 900px;
+  margin: 0 auto;
+
+  &--active {
+    display: block;
+  }
+}
+
+.schedule-item {
+  display: flex;
+  gap: $spacing-xl;
+  padding: $spacing-lg 0;
+  border-bottom: 1px solid rgba($navy, 0.08);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  // Type-specific left border
+  &--headline,
+  &--tutorial,
+  &--invited,
+  &--lightning {
+    .schedule-details {
+      border-left: 3px solid var(--session-color, $gold);
+      padding-left: $spacing-lg;
+    }
+  }
+
+  &--break {
+    opacity: 0.7;
+
+    .schedule-details {
+      padding-left: $spacing-lg;
+      border-left: 3px solid rgba($navy, 0.1);
+    }
+  }
+
+  &--ceremony,
+  &--social {
+    .schedule-details {
+      padding-left: $spacing-lg;
+      border-left: 3px solid $gold;
+    }
+  }
+}
+
+.schedule-time {
+  flex-shrink: 0;
+  width: 130px;
+  font-family: $font-body;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $navy;
+  padding-top: 2px;
+
+  @media (max-width: $bp-sm) {
+    width: 90px;
+    font-size: $font-size-xs;
+  }
+}
+
+.schedule-details {
+  flex: 1;
+}
+
+.schedule-item-header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-xs;
+  flex-wrap: wrap;
+}
+
+.schedule-item-title {
+  font-family: $font-body;
+  font-size: $font-size-base;
+  font-weight: 600;
+  color: $navy;
+}
+
+.schedule-type-badge {
+  font-size: $font-size-xs;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px $spacing-sm;
+  border-radius: $border-radius-sm;
+  background: rgba($navy, 0.06);
+  color: lighten($navy, 25%);
+}
+
+.schedule-speaker {
+  font-size: $font-size-sm;
+  color: $navy;
+  font-weight: 500;
+  margin-bottom: $spacing-xs;
+}
+
+.schedule-affiliation {
+  font-weight: 400;
+  color: lighten($navy, 25%);
+}
+
+.schedule-description {
+  font-size: $font-size-sm;
+  color: lighten($navy, 30%);
+  margin-bottom: 0;
+}
+
+@media (max-width: $bp-sm) {
+  .schedule-tabs {
+    flex-direction: column;
+  }
+
+  .schedule-item {
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  .schedule-time {
+    width: auto;
+  }
+}

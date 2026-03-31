@@ -1,0 +1,111 @@
+// Hero Section
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $navy;
+  overflow: hidden;
+}
+
+#hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba($navy-dark, 0.7) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: $spacing-2xl;
+  max-width: 800px;
+}
+
+.hero-supertitle {
+  font-family: $font-body;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: rgba($cream, 0.7);
+  margin-bottom: $spacing-md;
+}
+
+.hero-title {
+  font-family: $font-heading;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 700;
+  color: $cream;
+  margin-bottom: $spacing-md;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-tagline {
+  font-family: $font-heading;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-style: italic;
+  color: $gold;
+  margin-bottom: $spacing-xl;
+  font-weight: 400;
+}
+
+.hero-details {
+  font-family: $font-body;
+  font-size: $font-size-lg;
+  color: rgba($cream, 0.9);
+  margin-bottom: $spacing-2xl;
+  font-weight: 300;
+}
+
+.hero-separator {
+  margin: 0 $spacing-md;
+  color: $gold;
+}
+
+.hero-registration-note {
+  font-family: $font-body;
+  font-size: $font-size-base;
+  color: rgba($cream, 0.7);
+  font-style: italic;
+  border: 1px solid rgba($gold, 0.3);
+  display: inline-block;
+  padding: $spacing-sm $spacing-xl;
+  border-radius: $border-radius;
+}
+
+@media (max-width: $bp-md) {
+  .hero {
+    min-height: 90vh;
+  }
+
+  .hero-content {
+    padding: $spacing-lg;
+  }
+
+  .hero-details {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  .hero-separator {
+    display: none;
+  }
+}

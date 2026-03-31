@@ -1,0 +1,232 @@
+// About Section
+.about-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: $spacing-3xl;
+  align-items: start;
+
+  @media (max-width: $bp-md) {
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+  }
+}
+
+.about-text {
+  font-size: $font-size-lg;
+  color: lighten($navy, 15%);
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.about-sessions h3 {
+  margin-bottom: $spacing-lg;
+  color: $navy;
+}
+
+.session-list {
+  list-style: none;
+}
+
+.session-item {
+  padding: $spacing-md $spacing-lg;
+  margin-bottom: $spacing-sm;
+  border-left: 4px solid var(--session-color, $gold);
+  background: white;
+  border-radius: 0 $border-radius-sm $border-radius-sm 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: $shadow-sm;
+}
+
+.session-name {
+  font-weight: 600;
+  color: $navy;
+}
+
+.session-day {
+  font-size: $font-size-sm;
+  color: lighten($navy, 30%);
+}
+
+// Venue Section
+.venue-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-2xl;
+
+  @media (max-width: $bp-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.venue-info {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.venue-card {
+  padding: $spacing-lg;
+  background: white;
+  border-radius: $border-radius;
+  box-shadow: $shadow-sm;
+
+  h3 {
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-sm;
+    color: $navy;
+  }
+
+  p {
+    margin-bottom: $spacing-xs;
+    color: lighten($navy, 15%);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.venue-map {
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+  min-height: 350px;
+}
+
+// Registration Section
+.registration {
+  background: $navy !important;
+  color: $cream;
+
+  .section-title {
+    color: $cream;
+  }
+}
+
+.registration-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.registration-cta {
+  text-align: center;
+  margin-bottom: $spacing-3xl;
+
+  p {
+    font-size: $font-size-lg;
+    color: rgba($cream, 0.85);
+    margin-bottom: $spacing-xl;
+  }
+}
+
+.registration-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-lg;
+
+  @media (max-width: $bp-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.registration-card {
+  padding: $spacing-xl;
+  background: rgba(white, 0.05);
+  border: 1px solid rgba($gold, 0.2);
+  border-radius: $border-radius;
+
+  h3 {
+    color: $gold;
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-md;
+  }
+
+  p {
+    color: rgba($cream, 0.8);
+    font-size: $font-size-sm;
+    margin-bottom: 0;
+  }
+}
+
+// Sponsors Section
+.sponsor-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-3xl;
+  padding: $spacing-xl 0;
+}
+
+.sponsor-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-lg $spacing-xl;
+  background: white;
+  border-radius: $border-radius;
+  box-shadow: $shadow-sm;
+  transition: all $transition-base;
+  text-decoration: none;
+  min-width: 200px;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+
+  img {
+    max-height: 60px;
+    width: auto;
+  }
+}
+
+.sponsor-name {
+  font-family: $font-body;
+  font-weight: 600;
+  font-size: $font-size-sm;
+  color: $navy;
+  text-align: center;
+}
+
+// Past Years Section
+.past-years-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-lg;
+  max-width: 900px;
+  margin: 0 auto;
+
+  @media (max-width: $bp-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.past-year-card {
+  text-align: center;
+  padding: $spacing-xl;
+  background: white;
+  border-radius: $border-radius;
+  box-shadow: $shadow-sm;
+  border-top: 3px solid $gold;
+
+  h3 {
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.past-year-theme {
+  font-style: italic;
+  color: lighten($navy, 20%);
+  margin-bottom: $spacing-xs;
+}
+
+.past-year-date {
+  font-size: $font-size-sm;
+  color: lighten($navy, 35%);
+}

@@ -1,0 +1,159 @@
+// Reset & Base Styles
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: $font-body;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $color-text-dark;
+  background-color: $color-bg-light;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  line-height: $line-height-heading;
+  color: $navy;
+  font-weight: 700;
+}
+
+h1 { font-size: $font-size-4xl; }
+h2 { font-size: $font-size-3xl; }
+h3 { font-size: $font-size-xl; }
+h4 { font-size: $font-size-lg; }
+
+p {
+  margin-bottom: $spacing-md;
+}
+
+a {
+  color: $color-link;
+  text-decoration: none;
+  transition: color $transition-base;
+
+  &:hover {
+    color: $color-link-hover;
+  }
+}
+
+strong {
+  font-weight: 600;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Sections
+.section {
+  padding: $spacing-4xl 0;
+
+  &:nth-child(even) {
+    background-color: white;
+  }
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: $spacing-sm;
+  font-size: $font-size-3xl;
+  color: $navy;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: $gold;
+    margin: $spacing-md auto $spacing-xl;
+  }
+}
+
+.section-subtitle {
+  text-align: center;
+  color: lighten($navy, 30%);
+  font-size: $font-size-lg;
+  margin-bottom: $spacing-2xl;
+}
+
+// Buttons
+.btn {
+  display: inline-block;
+  padding: $spacing-md $spacing-xl;
+  border-radius: $border-radius;
+  font-family: $font-body;
+  font-weight: 600;
+  font-size: $font-size-base;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all $transition-base;
+  border: 2px solid transparent;
+}
+
+.btn-primary {
+  background-color: $teal;
+  color: white;
+  border-color: $teal;
+
+  &:hover {
+    background-color: $teal-dark;
+    border-color: $teal-dark;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: $shadow-md;
+  }
+}
+
+.btn-large {
+  padding: $spacing-lg $spacing-2xl;
+  font-size: $font-size-lg;
+}
+
+// TBD styling
+.tbd {
+  opacity: 0.6;
+  font-style: italic;
+}
+
+// Page content (standalone pages)
+.page-content {
+  padding-top: 100px;
+  min-height: 80vh;
+
+  h1 {
+    margin-bottom: $spacing-2xl;
+  }
+
+  h2 {
+    margin-top: $spacing-2xl;
+    margin-bottom: $spacing-md;
+  }
+
+  p, ul, ol {
+    margin-bottom: $spacing-md;
+  }
+
+  ul, ol {
+    padding-left: $spacing-xl;
+  }
+}
