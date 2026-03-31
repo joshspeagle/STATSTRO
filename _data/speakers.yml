@@ -1,0 +1,113 @@
+# Headline speakers
+- name: "Radu Craiu"
+  affiliation: "DoSS, University of Toronto"
+  role: headline
+  session: sampling
+  talk_title: "TBD"
+  photo: ""
+  bio: ""
+  website: ""
+
+- name: "Ann Lee"
+  affiliation: "STAMPS, Carnegie Mellon University"
+  role: headline
+  session: uq
+  talk_title: "TBD"
+  photo: ""
+  bio: ""
+  website: ""
+
+- name: "TBD"
+  affiliation: "DoSS/DADDAA, University of Toronto"
+  role: headline
+  session: ml
+  talk_title: "TBD"
+  photo: ""
+  bio: ""
+  website: ""
+  note: "Josh Speagle or Ricardo Baptista"
+
+- name: "TBD"
+  affiliation: "Ciela/Mila, Université de Montréal"
+  role: headline
+  session: sbi
+  talk_title: "TBD"
+  photo: ""
+  bio: ""
+  website: ""
+  note: "Yashar Hezaveh or Laurence Perreault-Levasseur"
+
+# Tutorial leaders
+- name: "Haowen Zhang"
+  affiliation: "University of Toronto"
+  role: tutorial
+  session: sampling
+  talk_title: "TBD"
+  photo: ""
+  bio: ""
+  website: ""
+
+- name: "Kevin McKinnon"
+  affiliation: "University of Toronto"
+  role: tutorial
+  session: uq
+  talk_title: "TBD"
+  photo: ""
+  bio: ""
+  website: ""
+
+- name: "Biprateep Dey"
+  affiliation: "University of Toronto"
+  role: tutorial
+  session: ml
+  talk_title: "TBD"
+  photo: ""
+  bio: ""
+  website: ""
+
+- name: "Christian Jespersen"
+  affiliation: ""
+  role: tutorial
+  session: sbi
+  talk_title: "TBD"
+  photo: ""
+  bio: ""
+  website: ""
+  note: "tentative"
+
+# Potential invited science speakers
+- name: "TBD"
+  affiliation: ""
+  role: invited
+  session: sampling
+  talk_title: "TBD"
+  photo: ""
+  bio: ""
+  website: ""
+
+- name: "TBD"
+  affiliation: ""
+  role: invited
+  session: uq
+  talk_title: "TBD"
+  photo: ""
+  bio: ""
+  website: ""
+
+- name: "TBD"
+  affiliation: ""
+  role: invited
+  session: ml
+  talk_title: "TBD"
+  photo: ""
+  bio: ""
+  website: ""
+
+- name: "TBD"
+  affiliation: ""
+  role: invited
+  session: sbi
+  talk_title: "TBD"
+  photo: ""
+  bio: ""
+  website: ""

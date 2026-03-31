@@ -1,0 +1,96 @@
+- time: "9:15 – 10:00"
+  title: "Breakfast & Registration"
+  type: break
+  description: "Coffee, tea & light refreshments"
+
+# Morning Session: Machine Learning
+- time: "10:00 – 11:00"
+  title: "TBD"
+  type: headline
+  session: ml
+  speaker: "TBD"
+  affiliation: "DoSS/DADDAA, UofT"
+  description: "Headline overview talk — 60 min"
+
+- time: "11:00 – 11:15"
+  title: "Break"
+  type: break
+
+- time: "11:15 – 12:00"
+  title: "TBD"
+  type: tutorial
+  session: ml
+  speaker: "TBD & Biprateep Dey"
+  description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
+
+- time: "12:00 – 12:15"
+  title: "Lightning Talks"
+  type: lightning
+  session: ml
+  description: "3 × 5-minute lightning talks"
+  talks:
+    - speaker: "TBD"
+      title: "TBD"
+    - speaker: "TBD"
+      title: "TBD"
+    - speaker: "TBD"
+      title: "TBD"
+
+- time: "12:15 – 12:45"
+  title: "TBD"
+  type: invited
+  session: ml
+  speaker: "TBD"
+  description: "Invited science talk — 30 min"
+
+# Lunch
+- time: "12:45 – 14:00"
+  title: "Lunch & Networking"
+  type: break
+  description: "Catered lunch with structured networking"
+
+# Afternoon Session: Simulation-Based Inference
+- time: "14:00 – 15:00"
+  title: "TBD"
+  type: headline
+  session: sbi
+  speaker: "TBD"
+  affiliation: "Ciela/Mila, UdeM"
+  description: "Headline overview talk — 60 min"
+
+- time: "15:00 – 15:15"
+  title: "Break"
+  type: break
+
+- time: "15:15 – 16:00"
+  title: "TBD"
+  type: tutorial
+  session: sbi
+  speaker: "TBD & Christian Jespersen"
+  description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
+
+- time: "16:00 – 16:15"
+  title: "Lightning Talks"
+  type: lightning
+  session: sbi
+  description: "3 × 5-minute lightning talks"
+  talks:
+    - speaker: "TBD"
+      title: "TBD"
+    - speaker: "TBD"
+      title: "TBD"
+    - speaker: "TBD"
+      title: "TBD"
+
+- time: "16:15 – 16:45"
+  title: "TBD"
+  type: invited
+  session: sbi
+  speaker: "TBD"
+  description: "Invited science talk — 30 min"
+
+# Closing
+- time: "16:45 – 17:00"
+  title: "Closing Remarks"
+  type: ceremony
+  description: "Wrap-up & next steps"

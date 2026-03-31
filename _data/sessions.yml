@@ -1,0 +1,23 @@
+- id: sampling
+  name: "Sampling Techniques"
+  day: 1
+  color: "#D4A843"
+  description: "Exploring the landscape of modern sampling methods"
+
+- id: uq
+  name: "Uncertainty Quantification"
+  day: 1
+  color: "#2A9D8F"
+  description: "Charting the boundaries of what we know and don't know"
+
+- id: ml
+  name: "Machine Learning"
+  day: 2
+  color: "#C45B3E"
+  description: "Mapping new frontiers with learning algorithms"
+
+- id: sbi
+  name: "Simulation-Based Inference"
+  day: 2
+  color: "#7B68AE"
+  description: "Navigating complex models through simulation"

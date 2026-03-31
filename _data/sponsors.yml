@@ -1,0 +1,19 @@
+- name: "Dunlap Institute for Astronomy & Astrophysics"
+  short_name: "Dunlap Institute"
+  logo: ""
+  url: "https://www.dunlap.utoronto.ca/"
+
+- name: "Canadian Institute for Theoretical Astrophysics"
+  short_name: "CITA"
+  logo: ""
+  url: "https://www.cita.utoronto.ca/"
+
+- name: "Department of Statistical Sciences, University of Toronto"
+  short_name: "Dept of Statistical Sciences"
+  logo: ""
+  url: "https://www.statistics.utoronto.ca/"
+
+- name: "Data Sciences Institute, University of Toronto"
+  short_name: "Data Sciences Institute"
+  logo: ""
+  url: "https://datasciences.utoronto.ca/"
