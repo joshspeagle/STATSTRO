@@ -1,0 +1,33 @@
+<section class="section organizers" id="organizers">
+  <div class="container">
+    <h2 class="section-title">Organizing Committee</h2>
+    <div class="organizer-grid">
+      {% for organizer in site.data.organizers %}
+      <div class="organizer-card">
+        <div class="organizer-photo">
+          {% if organizer.photo != "" %}
+          <img src="{{ '/assets/images/speakers/' | append: organizer.photo | relative_url }}"
+               alt="{{ organizer.name }}"
+               loading="lazy">
+          {% else %}
+          <div class="organizer-photo-placeholder">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="30" r="14" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 68c0-15.464 12.536-28 28-28s28 12.536 28 28" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          {% endif %}
+        </div>
+        <h4 class="organizer-name">
+          {% if organizer.website != "" %}
+          <a href="{{ organizer.website }}" target="_blank" rel="noopener noreferrer">{{ organizer.name }}</a>
+          {% else %}
+          {{ organizer.name }}
+          {% endif %}
+        </h4>
+        <p class="organizer-affiliation">{{ organizer.affiliation }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

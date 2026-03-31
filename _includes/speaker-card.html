@@ -1,0 +1,36 @@
+<div class="speaker-card" style="--session-color: {{ include.session.color }}">
+  <div class="speaker-photo">
+    {% if include.speaker.photo != "" %}
+    <img src="{{ '/assets/images/speakers/' | append: include.speaker.photo | relative_url }}"
+         alt="{{ include.speaker.name }}"
+         loading="lazy">
+    {% else %}
+    <div class="speaker-photo-placeholder">
+      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="30" r="14" stroke="currentColor" stroke-width="2"/>
+        <path d="M12 68c0-15.464 12.536-28 28-28s28 12.536 28 28" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </div>
+    {% endif %}
+  </div>
+  <div class="speaker-info">
+    {% if include.speaker.name == "TBD" %}
+    <h4 class="speaker-name tbd">To Be Announced</h4>
+    {% else %}
+    <h4 class="speaker-name">{{ include.speaker.name }}</h4>
+    {% endif %}
+    {% if include.speaker.affiliation != "" %}
+    <p class="speaker-affiliation">{{ include.speaker.affiliation }}</p>
+    {% endif %}
+    <span class="speaker-role speaker-role--{{ include.speaker.role }}">
+      {% if include.speaker.role == "headline" %}Headline Speaker
+      {% elsif include.speaker.role == "tutorial" %}Tutorial Leader
+      {% elsif include.speaker.role == "invited" %}Invited Speaker
+      {% elsif include.speaker.role == "lightning" %}Lightning Talk
+      {% endif %}
+    </span>
+    {% if include.speaker.talk_title != "TBD" and include.speaker.talk_title != "" %}
+    <p class="speaker-talk-title">"{{ include.speaker.talk_title }}"</p>
+    {% endif %}
+  </div>
+</div>

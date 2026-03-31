@@ -1,0 +1,19 @@
+<section class="hero" id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-supertitle">University of Toronto</p>
+    <h1 class="hero-title">STATSTRO 2026</h1>
+    <p class="hero-tagline">{{ site.conference.tagline }}</p>
+    <div class="hero-details">
+      <span class="hero-date">{{ site.conference.dates }}</span>
+      <span class="hero-separator">&middot;</span>
+      <span class="hero-location">{{ site.conference.city }}</span>
+    </div>
+    {% if site.conference.registration_open %}
+    <a href="{{ site.conference.registration_url }}" class="btn btn-primary">Register Now</a>
+    {% else %}
+    <p class="hero-registration-note">Registration opening soon</p>
+    {% endif %}
+  </div>
+</section>

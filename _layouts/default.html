@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include head.html %}
+<body>
+  {% include nav.html %}
+  {% include hero.html %}
+  <main>
+    {% include about.html %}
+    {% include speakers.html %}
+    {% include schedule.html %}
+    {% include venue.html %}
+    {% include registration.html %}
+    {% include sponsors.html %}
+    {% include organizers.html %}
+    {% include past-years.html %}
+  </main>
+  {% include footer.html %}
+  <script src="{{ '/assets/js/hero-animation.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

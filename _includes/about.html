@@ -1,0 +1,36 @@
+<section class="section about" id="about">
+  <div class="container">
+    <h2 class="section-title">About the Workshop</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          <strong>STATSTRO</strong> (formerly <em>Stellar Stats</em>) is an annual interdisciplinary workshop
+          bringing together researchers from astrophysics, statistics, computer science, and related fields to
+          celebrate and foster interdisciplinary research at the University of Toronto and beyond.
+        </p>
+        <p>
+          Now in its seventh year, the workshop aims to help foster new connections between statistics and astronomy,
+          to provide a fun venue to highlight research opportunities, and to help early-career researchers —
+          especially students and postdocs — develop networks outside their home departments.
+        </p>
+        <p>
+          This year's theme, <strong>{{ site.conference.tagline }}</strong>, explores how modern sampling methods,
+          computational simulations, and statistical inference are driving new discoveries across the sciences.
+          The workshop features four thematic sessions, each with a headline overview talk, a hands-on coding
+          tutorial, lightning talks, and an invited science presentation.
+        </p>
+      </div>
+      <div class="about-sessions">
+        <h3>Thematic Sessions</h3>
+        <ul class="session-list">
+          {% for session in site.data.sessions %}
+          <li class="session-item" style="--session-color: {{ session.color }}">
+            <span class="session-name">{{ session.name }}</span>
+            <span class="session-day">Day {{ session.day }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

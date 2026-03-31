@@ -1,0 +1,19 @@
+<section class="section sponsors" id="sponsors">
+  <div class="container">
+    <h2 class="section-title">Sponsors & Host Organizations</h2>
+    <p class="section-subtitle">Generously sponsored by</p>
+    <div class="sponsor-grid">
+      {% for sponsor in site.data.sponsors %}
+      <a href="{{ sponsor.url }}" class="sponsor-item" target="_blank" rel="noopener noreferrer">
+        {% if sponsor.logo != "" %}
+        <img src="{{ '/assets/images/logos/' | append: sponsor.logo | relative_url }}"
+             alt="{{ sponsor.name }}"
+             loading="lazy">
+        {% else %}
+        <span class="sponsor-name">{{ sponsor.short_name }}</span>
+        {% endif %}
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

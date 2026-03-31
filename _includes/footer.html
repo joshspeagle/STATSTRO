@@ -1,0 +1,27 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>{{ site.title }}</h3>
+        <p>{{ site.conference.tagline }}</p>
+        <p>{{ site.conference.dates }} &middot; {{ site.conference.city }}</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#registration">Registration</a></li>
+          <li><a href="{{ '/code-of-conduct' | relative_url }}">Code of Conduct</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>For questions about the workshop, please reach out to the organizing committee.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {{ site.conference.year }} STATSTRO. Hosted at the University of Toronto.</p>
+    </div>
+  </div>
+</footer>

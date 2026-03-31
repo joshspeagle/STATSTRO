@@ -1,0 +1,34 @@
+<section class="section registration" id="registration">
+  <div class="container">
+    <h2 class="section-title">Registration</h2>
+    <div class="registration-content">
+      {% if site.conference.registration_open %}
+      <div class="registration-cta">
+        <p>Registration is now open! Space is limited — please register early to secure your spot.</p>
+        <a href="{{ site.conference.registration_url }}" class="btn btn-primary btn-large">Register Now</a>
+      </div>
+      {% else %}
+      <div class="registration-cta">
+        <p>Registration will open soon. Check back for updates or follow us for announcements.</p>
+      </div>
+      {% endif %}
+
+      <div class="registration-details">
+        <div class="registration-card">
+          <h3>Lunch & Meals</h3>
+          <p>Both lunches are catered and designed for networking. There are no poster sessions — we encourage participants to use meal times to connect across disciplines.</p>
+        </div>
+
+        <div class="registration-card">
+          <h3>Group Dinner (Day 1)</h3>
+          <p>A group dinner will be held on Thursday evening. Funding covers a limited number of participants; details to follow.</p>
+        </div>
+
+        <div class="registration-card">
+          <h3>Lightning Talks</h3>
+          <p>We welcome 5-minute lightning talk submissions from graduate students and postdocs. Submission details will be available when registration opens.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

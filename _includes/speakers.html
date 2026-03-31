@@ -1,0 +1,21 @@
+<section class="section speakers" id="speakers">
+  <div class="container">
+    <h2 class="section-title">Speakers</h2>
+
+    {% for session in site.data.sessions %}
+    {% assign session_speakers = site.data.speakers | where: "session", session.id %}
+    {% if session_speakers.size > 0 %}
+    <div class="speaker-session">
+      <h3 class="speaker-session-title" style="--session-color: {{ session.color }}">
+        {{ session.name }}
+      </h3>
+      <div class="speaker-grid">
+        {% for speaker in session_speakers %}
+        {% include speaker-card.html speaker=speaker session=session %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</section>
