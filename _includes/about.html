@@ -5,19 +5,29 @@
       <div class="about-text">
         <p>
           <strong>STATSTRO</strong> (formerly <em>Stellar Stats</em>) is an annual interdisciplinary workshop
-          bringing together researchers from astrophysics, statistics, computer science, and related fields to
-          celebrate and foster interdisciplinary research at the University of Toronto and beyond.
+          that brings together statisticians, astronomers, members of the broader scientific community, and
+          particularly early-career researchers working on interdisciplinary research in astrostatistics and
+          astroinformatics.
         </p>
         <p>
-          Now in its seventh year, the workshop aims to help foster new connections between statistics and astronomy,
-          to provide a fun venue to highlight research opportunities, and to help early-career researchers —
-          especially students and postdocs — develop networks outside their home departments.
+          Now in its seventh year, the workshop builds on a tradition of fostering connections between the
+          Department of Statistical Sciences (DoSS), the Data Sciences Institute (DSI), and the astronomy
+          communities of DADDAA, Dunlap, and CITA at the University of Toronto. This year's edition expands
+          the workshop into an international 2-day gathering, with a focus on communities around the Great
+          Lakes area in the US and across Canada — though it is open to participants from anywhere in the world.
         </p>
         <p>
           This year's theme, <strong>{{ site.conference.tagline }}</strong>, explores how modern sampling methods,
           computational simulations, and statistical inference are driving new discoveries across the sciences.
-          The workshop features four thematic sessions, each with a headline overview talk, a hands-on coding
-          tutorial, lightning talks, and an invited science presentation.
+          The extended format allows for longer tutorials, more in-depth discussions, stronger recruitment of
+          statistics and machine learning researchers, and deeper engagement from both local and international
+          participants.
+        </p>
+        <p>
+          Each of the four thematic sessions features a <strong>headline overview talk</strong>,
+          a <strong>hands-on coding tutorial</strong> (Jupyter/Colab), <strong>lightning talks</strong> from
+          graduate students and postdocs, and an <strong>invited science presentation</strong>. Catered lunches
+          and networking activities provide ample opportunities for cross-disciplinary connections.
         </p>
       </div>
       <div class="about-sessions">
@@ -25,8 +35,11 @@
         <ul class="session-list">
           {% for session in site.data.sessions %}
           <li class="session-item" style="--session-color: {{ session.color }}">
-            <span class="session-name">{{ session.name }}</span>
-            <span class="session-day">Day {{ session.day }}</span>
+            <div class="session-header">
+              <span class="session-name">{{ session.name }}</span>
+              <span class="session-day">Day {{ session.day }}</span>
+            </div>
+            <span class="session-description">{{ session.description }}</span>
           </li>
           {% endfor %}
         </ul>

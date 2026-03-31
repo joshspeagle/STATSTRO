@@ -2,22 +2,22 @@
   name: "Sampling Techniques"
   day: 1
   color: "#D4A843"
-  description: "Exploring the landscape of modern sampling methods"
+  description: "Modern sampling methods with a focus on MCMC, effective sample size, convergence diagnostics, and scaling to high dimensions."
 
 - id: uq
   name: "Uncertainty Quantification"
   day: 1
   color: "#2A9D8F"
-  description: "Charting the boundaries of what we know and don't know"
+  description: "Strategies for quantifying uncertainty across frequentist and Bayesian frameworks, including conformal prediction methods."
 
 - id: ml
   name: "Machine Learning"
   day: 2
   color: "#C45B3E"
-  description: "Mapping new frontiers with learning algorithms"
+  description: "Deep learning for scientific applications, including neural networks as emulators and surrogates, interpolation, extrapolation, and generalizability."
 
 - id: sbi
   name: "Simulation-Based Inference"
   day: 2
   color: "#7B68AE"
-  description: "Navigating complex models through simulation"
+  description: "Inference with intractable likelihoods using both traditional methods and neural approaches such as normalizing flows and diffusion models."

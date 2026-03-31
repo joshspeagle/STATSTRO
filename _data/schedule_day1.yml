@@ -12,8 +12,7 @@
   title: "TBD"
   type: headline
   session: sampling
-  speaker: "Radu Craiu"
-  affiliation: "DoSS, UofT"
+  speaker: "TBD"
   description: "Headline overview talk — 60 min"
 
 - time: "11:10 – 11:25"
@@ -24,7 +23,7 @@
   title: "TBD"
   type: tutorial
   session: sampling
-  speaker: "Radu Craiu & Haowen Zhang"
+  speaker: "TBD"
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
 
 - time: "12:10 – 12:25"
@@ -58,8 +57,7 @@
   title: "TBD"
   type: headline
   session: uq
-  speaker: "Ann Lee"
-  affiliation: "STAMPS, CMU"
+  speaker: "TBD"
   description: "Headline overview talk — 60 min"
 
 - time: "15:15 – 15:30"
@@ -70,7 +68,7 @@
   title: "TBD"
   type: tutorial
   session: uq
-  speaker: "Ann Lee & Kevin McKinnon"
+  speaker: "TBD"
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
 
 - time: "16:15 – 16:30"

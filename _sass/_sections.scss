@@ -36,9 +36,16 @@
   background: white;
   border-radius: 0 $border-radius-sm $border-radius-sm 0;
   display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  box-shadow: $shadow-sm;
+}
+
+.session-header {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: $shadow-sm;
+  width: 100%;
 }
 
 .session-name {
@@ -49,6 +56,12 @@
 .session-day {
   font-size: $font-size-sm;
   color: lighten($navy, 30%);
+}
+
+.session-description {
+  font-size: $font-size-sm;
+  color: lighten($navy, 25%);
+  line-height: 1.4;
 }
 
 // Venue Section

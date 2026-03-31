@@ -9,7 +9,6 @@
   type: headline
   session: ml
   speaker: "TBD"
-  affiliation: "DoSS/DADDAA, UofT"
   description: "Headline overview talk — 60 min"
 
 - time: "11:00 – 11:15"
@@ -20,7 +19,7 @@
   title: "TBD"
   type: tutorial
   session: ml
-  speaker: "TBD & Biprateep Dey"
+  speaker: "TBD"
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
 
 - time: "12:00 – 12:15"
@@ -55,7 +54,6 @@
   type: headline
   session: sbi
   speaker: "TBD"
-  affiliation: "Ciela/Mila, UdeM"
   description: "Headline overview talk — 60 min"
 
 - time: "15:00 – 15:15"
@@ -66,7 +64,7 @@
   title: "TBD"
   type: tutorial
   session: sbi
-  speaker: "TBD & Christian Jespersen"
+  speaker: "TBD"
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
 
 - time: "16:00 – 16:15"
