@@ -1,0 +1,31 @@
+title: "STATSTRO 2026"
+description: "Sampling, Simulation, and Scientific Discovery — An interdisciplinary astrostatistics workshop at the University of Toronto"
+url: "https://statstro.com"
+baseurl: ""
+
+# Conference details
+conference:
+  name: "STATSTRO 2026"
+  tagline: "Sampling, Simulation, and Scientific Discovery"
+  dates: "July 16–17, 2026"
+  date_short: "Jul 16–17"
+  year: 2026
+  venue: "Department of Statistical Sciences"
+  address: "700 University Avenue, 9th–10th floors"
+  city: "Toronto, ON"
+  registration_url: "#"  # Update when registration opens
+  registration_open: false
+
+# Build settings
+markdown: kramdown
+sass:
+  style: compressed
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CLAUDE.md
+  - vendor
+  - "*.docx"
