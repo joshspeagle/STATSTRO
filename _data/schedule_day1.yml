@@ -50,7 +50,7 @@
 - time: "12:55 – 14:15"
   title: "Lunch & Networking"
   type: break
-  description: "Group photo at 12:55, then catered lunch with structured networking"
+  description: "Group photo at 12:55, then catered lunch with poster session and networking"
 
 # Afternoon Session: Uncertainty Quantification
 - time: "14:15 – 15:15"
@@ -98,6 +98,6 @@
   description: "Informal wrap-up and mingling"
 
 - time: "17:45"
-  title: "Depart for Group Dinner"
+  title: "Depart for Conference Dinner"
   type: social
-  description: "Group dinner — venue TBD. Funded for a limited number of participants."
+  description: "Conference dinner — venue TBD. Space is limited; sign-up details provided at registration."

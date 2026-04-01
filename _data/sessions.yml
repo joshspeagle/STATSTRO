@@ -2,7 +2,7 @@
   name: "Sampling Techniques"
   day: 1
   color: "#D4A843"
-  description: "Modern sampling methods with a focus on MCMC, effective sample size, convergence diagnostics, and scaling to high dimensions."
+  description: "Modern sampling methods including MCMC, nested sampling, and variational approaches, with a focus on scaling to high dimensions and large datasets."
 
 - id: uq
   name: "Uncertainty Quantification"

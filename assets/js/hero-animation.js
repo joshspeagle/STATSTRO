@@ -1,7 +1,7 @@
 /**
- * MCMC Sampler Hero Animation
- * Simulates a Metropolis-Hastings sampler exploring a 2D posterior,
- * visualized as a celestial cartography map with contour lines.
+ * Parallel-Tempered MCMC Hero Animation
+ * Three chains at different temperatures explore a curved 2D posterior
+ * with banana-shaped modes, visualized as celestial cartography.
  * The cursor creates a gravitational well that biases sampling.
  */
 (function () {
@@ -11,8 +11,6 @@
   const ctx = canvas.getContext('2d');
   let width, height;
   let animationId;
-  let samples = [];
-  let chain = [];
   let contourData = null;
   let gridResolution = 80;
   let time = 0;
@@ -23,27 +21,46 @@
     gold: '#D4A843',
     teal: '#2A9D8F',
     cream: '#F5F0E8',
+    coral: '#C45B3E',
     gridLine: 'rgba(245, 240, 232, 0.04)',
   };
 
-  // Target distribution: 5 modes arranged like a scattered constellation
-  // (wide spatial spread, no unfortunate alignments)
+  // Target distribution: 3 banana-shaped modes (closer together for mode crossing)
   const modes = [
-    { x: 0.20, y: 0.30, sx: 0.06, sy: 0.05, w: 0.30, rho:  0.2  },  // upper-left
-    { x: 0.75, y: 0.25, sx: 0.07, sy: 0.05, w: 0.25, rho: -0.1  },  // upper-right
-    { x: 0.45, y: 0.55, sx: 0.08, sy: 0.06, w: 0.20, rho:  0.0  },  // center
-    { x: 0.15, y: 0.75, sx: 0.05, sy: 0.07, w: 0.15, rho: -0.3  },  // lower-left
-    { x: 0.80, y: 0.70, sx: 0.06, sy: 0.08, w: 0.20, rho:  0.15 },  // lower-right
+    { x: 0.30, y: 0.38, sx: 0.10, sy: 0.08, w: 0.40, curve: 3.0, angle: 0.3 },
+    { x: 0.66, y: 0.30, sx: 0.09, sy: 0.10, w: 0.35, curve: -2.5, angle: -0.2 },
+    { x: 0.48, y: 0.70, sx: 0.11, sy: 0.08, w: 0.25, curve: 2.0, angle: -0.5 },
   ];
 
   // Cursor state (normalized 0-1 coordinates, null when off-canvas)
   let cursorX = null;
   let cursorY = null;
-  const cursorWeight = 0.15;  // how strongly the cursor attracts
-  const cursorSD = 0.08;      // spread of the cursor's influence
+  const cursorWeight = 0.40;
+  const cursorSD = 0.14;
 
   // Background stars
   let stars = [];
+
+  // Parallel tempering: 3 chains at different temperatures
+  const temperatures = [1, 3, 10];
+  const chainColors = [COLORS.gold, COLORS.teal, COLORS.coral];
+  const baseProposalSD = 0.03;
+  const maxSamplesPerChain = 800;
+  const maxTraceLength = 60;
+  let samplesPerFrame = 2;
+  let totalSamples = 0;
+
+  // Swap visualization
+  let recentSwaps = [];
+
+  let chains = temperatures.map((T, i) => ({
+    x: 0.3 + 0.18 * i,
+    y: 0.35 + 0.18 * i,
+    T,
+    samples: [],
+    trace: [],
+    proposalSD: baseProposalSD * Math.sqrt(T),
+  }));
 
   function resize() {
     const dpr = window.devicePixelRatio || 1;
@@ -68,19 +85,30 @@
     computeContourGrid();
   }
 
-  function gaussianPDF(x, y, mode) {
-    const dx = (x - mode.x) / mode.sx;
-    const dy = (y - mode.y) / mode.sy;
-    const rho = mode.rho;
-    const z = (dx * dx - 2 * rho * dx * dy + dy * dy) / (1 - rho * rho);
-    return mode.w * Math.exp(-0.5 * z);
+  // Banana-shaped Gaussian PDF: applies rotation then curves y-axis quadratically in x
+  function bananaPDF(x, y, mode) {
+    const dx = x - mode.x;
+    const dy = y - mode.y;
+
+    // Rotate into mode's local frame
+    const cos = Math.cos(mode.angle);
+    const sin = Math.sin(mode.angle);
+    const rx = cos * dx + sin * dy;
+    const ry = -sin * dx + cos * dy;
+
+    // Banana transform: bend y based on x^2
+    const ry2 = ry - mode.curve * rx * rx;
+
+    const zx = rx / mode.sx;
+    const zy = ry2 / mode.sy;
+    return mode.w * Math.exp(-0.5 * (zx * zx + zy * zy));
   }
 
   // Static density (without cursor) for contour grid
   function baseDensity(x, y) {
     let p = 0;
     for (const mode of modes) {
-      p += gaussianPDF(x, y, mode);
+      p += bananaPDF(x, y, mode);
     }
     return p;
   }
@@ -112,39 +140,59 @@
     contourData = { grid, maxVal };
   }
 
-  // MCMC sampler state
-  let mcmcX = 0.5;
-  let mcmcY = 0.5;
-  const proposalSD = 0.03;
-  let samplesPerFrame = 3;
-  const maxSamples = 2000;
-  const maxChainVisible = 80;
-
-  function mcmcStep() {
-    const propX = mcmcX + (Math.random() - 0.5) * 2 * proposalSD;
-    const propY = mcmcY + (Math.random() - 0.5) * 2 * proposalSD;
+  // Metropolis-Hastings step for a single tempered chain
+  function mcmcStep(chain) {
+    const sd = chain.proposalSD;
+    const propX = chain.x + (Math.random() - 0.5) * 2 * sd;
+    const propY = chain.y + (Math.random() - 0.5) * 2 * sd;
 
     if (propX < 0 || propX > 1 || propY < 0 || propY > 1) return;
 
-    const currentP = targetDensity(mcmcX, mcmcY);
+    const beta = 1 / chain.T;
+    const currentP = targetDensity(chain.x, chain.y);
     const proposedP = targetDensity(propX, propY);
-    const alpha = Math.min(1, proposedP / (currentP + 1e-10));
+    const logAlpha = beta * (Math.log(proposedP + 1e-30) - Math.log(currentP + 1e-30));
 
-    if (Math.random() < alpha) {
-      mcmcX = propX;
-      mcmcY = propY;
+    if (Math.log(Math.random()) < logAlpha) {
+      chain.x = propX;
+      chain.y = propY;
     }
 
-    const sample = { x: mcmcX, y: mcmcY, age: 0 };
-    samples.push(sample);
-    chain.push({ x: mcmcX, y: mcmcY });
+    chain.samples.push({ x: chain.x, y: chain.y, age: 0 });
+    chain.trace.push({ x: chain.x, y: chain.y });
 
-    if (samples.length > maxSamples) {
-      samples.shift();
+    if (chain.samples.length > maxSamplesPerChain) {
+      chain.samples.shift();
     }
-    if (chain.length > maxChainVisible) {
-      chain.shift();
+    if (chain.trace.length > maxTraceLength) {
+      chain.trace.shift();
     }
+  }
+
+  // Parallel tempering swap between two adjacent chains
+  function attemptSwap(i, j) {
+    const c1 = chains[i], c2 = chains[j];
+    const beta1 = 1 / c1.T, beta2 = 1 / c2.T;
+    const logP1 = Math.log(targetDensity(c1.x, c1.y) + 1e-30);
+    const logP2 = Math.log(targetDensity(c2.x, c2.y) + 1e-30);
+    const logAlpha = (beta1 - beta2) * (logP2 - logP1);
+
+    if (Math.log(Math.random()) < logAlpha) {
+      // Swap positions
+      const tmpX = c1.x, tmpY = c1.y;
+      c1.x = c2.x; c1.y = c2.y;
+      c2.x = tmpX; c2.y = tmpY;
+
+      recentSwaps.push({
+        x1: c1.x, y1: c1.y,
+        x2: c2.x, y2: c2.y,
+        age: 0,
+        color1: chainColors[i],
+        color2: chainColors[j],
+      });
+      return true;
+    }
+    return false;
   }
 
   function drawGrid() {
@@ -184,7 +232,7 @@
     const levels = [0.08, 0.15, 0.25, 0.4, 0.6];
     const alphas = [0.06, 0.08, 0.10, 0.13, 0.18];
 
-    const contourFade = Math.min(1, samples.length / 300);
+    const contourFade = Math.min(1, totalSamples / 300);
 
     for (let l = 0; l < levels.length; l++) {
       const threshold = levels[l] * maxVal;
@@ -238,7 +286,7 @@
     }
   }
 
-  // Draw a subtle glow at cursor position
+  // Draw a glow at cursor position
   function drawCursorAttractor() {
     if (cursorX === null || cursorY === null) return;
 
@@ -247,8 +295,8 @@
     const radius = cursorSD * Math.max(width, height);
 
     const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
-    gradient.addColorStop(0, 'rgba(212, 168, 67, 0.08)');
-    gradient.addColorStop(0.5, 'rgba(212, 168, 67, 0.03)');
+    gradient.addColorStop(0, 'rgba(212, 168, 67, 0.15)');
+    gradient.addColorStop(0.4, 'rgba(212, 168, 67, 0.06)');
     gradient.addColorStop(1, 'rgba(212, 168, 67, 0)');
 
     ctx.fillStyle = gradient;
@@ -257,57 +305,18 @@
     ctx.fill();
   }
 
-  function drawChain() {
-    if (chain.length < 2) return;
-
-    const chainFade = Math.min(1, samples.length / 100);
-    ctx.strokeStyle = `rgba(212, 168, 67, ${0.2 * chainFade})`;
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(chain[0].x * width, chain[0].y * height);
-    for (let i = 1; i < chain.length; i++) {
-      ctx.lineTo(chain[i].x * width, chain[i].y * height);
-    }
-    ctx.stroke();
-  }
-
-  function drawSamples() {
-    for (let i = 0; i < samples.length; i++) {
-      const s = samples[i];
-      s.age++;
-
-      const recentFraction = i / samples.length;
-      const isRecent = i > samples.length - 20;
-
-      if (isRecent) {
-        const glow = 1 - (samples.length - i) / 20;
-        ctx.beginPath();
-        ctx.arc(s.x * width, s.y * height, 3 + glow * 2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(212, 168, 67, ${0.6 * glow + 0.1})`;
-        ctx.fill();
-      } else {
-        const alpha = 0.05 + 0.15 * recentFraction;
-        ctx.beginPath();
-        ctx.arc(s.x * width, s.y * height, 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(42, 157, 143, ${alpha})`;
-        ctx.fill();
-      }
-    }
-  }
-
-  // Constellation lines connecting modes
+  // Constellation lines connecting the 3 modes (triangle)
   function drawConstellationLines() {
-    if (samples.length < 200) return;
+    if (totalSamples < 200) return;
 
-    const fade = Math.min(1, (samples.length - 200) / 400);
+    const fade = Math.min(1, (totalSamples - 200) / 400);
     const modeCenters = modes.map(m => ({ x: m.x * width, y: m.y * height }));
 
     ctx.strokeStyle = `rgba(212, 168, 67, ${0.12 * fade})`;
     ctx.lineWidth = 1;
     ctx.setLineDash([4, 8]);
 
-    // Connect in a constellation pattern (not all-to-all)
-    const connections = [[0, 2], [2, 1], [2, 3], [2, 4], [0, 3], [1, 4]];
+    const connections = [[0, 1], [1, 2], [2, 0]];
     for (const [a, b] of connections) {
       ctx.beginPath();
       ctx.moveTo(modeCenters[a].x, modeCenters[a].y);
@@ -316,6 +325,108 @@
     }
 
     ctx.setLineDash([]);
+  }
+
+  // Draw a chain's trace (recent path)
+  function drawChainTrace(chain, color, chainIdx) {
+    if (chain.trace.length < 2) return;
+
+    const traceFade = Math.min(1, totalSamples / 100);
+    // Cold chain thicker, hot chain thinner
+    const lineWidth = chainIdx === 0 ? 1.2 : chainIdx === 1 ? 0.8 : 0.5;
+    const baseAlpha = chainIdx === 0 ? 0.25 : chainIdx === 1 ? 0.15 : 0.10;
+
+    ctx.strokeStyle = color;
+    ctx.lineWidth = lineWidth;
+    ctx.globalAlpha = baseAlpha * traceFade;
+    ctx.beginPath();
+    ctx.moveTo(chain.trace[0].x * width, chain.trace[0].y * height);
+    for (let i = 1; i < chain.trace.length; i++) {
+      ctx.lineTo(chain.trace[i].x * width, chain.trace[i].y * height);
+    }
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+  }
+
+  // Draw a chain's samples
+  function drawChainSamples(chain, color, chainIdx) {
+    // Parse the chain color to RGB for alpha control
+    const rgb = hexToRgb(color);
+
+    for (let i = 0; i < chain.samples.length; i++) {
+      const s = chain.samples[i];
+      s.age++;
+
+      const recentFraction = i / chain.samples.length;
+      const isRecent = i > chain.samples.length - 15;
+
+      if (chainIdx === 0 && isRecent) {
+        // Cold chain: glowing recent samples
+        const glow = 1 - (chain.samples.length - i) / 15;
+        ctx.beginPath();
+        ctx.arc(s.x * width, s.y * height, 3 + glow * 2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${0.6 * glow + 0.15})`;
+        ctx.fill();
+      } else {
+        // Size and alpha decrease with temperature
+        const radius = chainIdx === 0 ? 1.8 : chainIdx === 1 ? 1.3 : 0.9;
+        const alphaScale = chainIdx === 0 ? 1.0 : chainIdx === 1 ? 0.6 : 0.35;
+        const alpha = (0.05 + 0.18 * recentFraction) * alphaScale;
+
+        ctx.beginPath();
+        ctx.arc(s.x * width, s.y * height, radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
+        ctx.fill();
+      }
+    }
+  }
+
+  // Draw swap events as brief arcs between chains
+  function drawSwaps() {
+    for (const swap of recentSwaps) {
+      const progress = swap.age / 30;
+      const alpha = 0.4 * (1 - progress);
+      if (alpha < 0.01) continue;
+
+      const x1 = swap.x1 * width, y1 = swap.y1 * height;
+      const x2 = swap.x2 * width, y2 = swap.y2 * height;
+
+      // Draw a pulsing arc between the two swap positions
+      const midX = (x1 + x2) / 2;
+      const midY = (y1 + y2) / 2;
+      const dx = x2 - x1, dy = y2 - y1;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      // Curved control point perpendicular to the line
+      const cpX = midX - dy * 0.3;
+      const cpY = midY + dx * 0.3;
+
+      ctx.strokeStyle = `rgba(245, 240, 232, ${alpha})`;
+      ctx.lineWidth = 1.5 * (1 - progress);
+      ctx.setLineDash([2, 3]);
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.quadraticCurveTo(cpX, cpY, x2, y2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Small flare at each endpoint
+      const flareR = 4 * (1 - progress);
+      ctx.fillStyle = `rgba(245, 240, 232, ${alpha * 0.5})`;
+      ctx.beginPath();
+      ctx.arc(x1, y1, flareR, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(x2, y2, flareR, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function hexToRgb(hex) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return { r, g, b };
   }
 
   function draw() {
@@ -331,15 +442,37 @@
     drawContours();
     drawCursorAttractor();
     drawConstellationLines();
-    drawChain();
-    drawSamples();
+    drawSwaps();
 
-    // Run MCMC steps
-    for (let i = 0; i < samplesPerFrame; i++) {
-      mcmcStep();
+    // Draw each chain (hot first so cold draws on top)
+    for (let ci = chains.length - 1; ci >= 0; ci--) {
+      drawChainTrace(chains[ci], chainColors[ci], ci);
+      drawChainSamples(chains[ci], chainColors[ci], ci);
     }
 
-    if (samples.length > 800) {
+    // Run MCMC steps for all chains
+    for (let s = 0; s < samplesPerFrame; s++) {
+      for (const chain of chains) {
+        mcmcStep(chain);
+      }
+      totalSamples++;
+    }
+
+    // Attempt temperature swaps every 15 steps
+    if (totalSamples % 15 === 0) {
+      // Randomly pick adjacent pair
+      if (Math.random() < 0.5) {
+        attemptSwap(0, 1);
+      } else {
+        attemptSwap(1, 2);
+      }
+    }
+
+    // Age and prune swap visuals
+    recentSwaps = recentSwaps.filter(s => { s.age++; return s.age < 30; });
+
+    // Slow down after initial burst
+    if (totalSamples > 600) {
       samplesPerFrame = 1;
     }
 

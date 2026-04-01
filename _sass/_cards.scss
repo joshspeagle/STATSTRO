@@ -116,14 +116,13 @@
 // Organizer Cards
 .organizer-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: $spacing-xl;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
 
   @media (max-width: $bp-md) {
-    grid-template-columns: 1fr;
-    max-width: 300px;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -173,6 +172,15 @@
       color: $teal;
     }
   }
+}
+
+.organizer-role {
+  font-size: $font-size-xs;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: $teal;
+  margin-bottom: $spacing-xs;
 }
 
 .organizer-affiliation {

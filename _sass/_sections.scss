@@ -136,9 +136,24 @@
   }
 }
 
+.registration-note {
+  text-align: center;
+  font-size: $font-size-sm;
+  color: rgba($cream, 0.7);
+  margin-bottom: $spacing-2xl;
+
+  a {
+    color: $gold;
+
+    &:hover {
+      color: lighten($gold, 15%);
+    }
+  }
+}
+
 .registration-details {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: $spacing-lg;
 
   @media (max-width: $bp-md) {
@@ -195,6 +210,18 @@
   img {
     max-height: 60px;
     width: auto;
+  }
+}
+
+.sponsor-icon-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-sm;
+
+  i {
+    font-size: 1.8rem;
+    color: $teal;
   }
 }
 

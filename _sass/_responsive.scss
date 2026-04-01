@@ -73,6 +73,25 @@
   p {
     font-size: $font-size-sm;
     color: rgba($cream, 0.6);
+    margin-bottom: $spacing-sm;
+  }
+
+  .contact-list {
+    list-style: none;
+
+    li {
+      margin-bottom: $spacing-xs;
+    }
+
+    a {
+      color: rgba($cream, 0.6);
+      font-size: $font-size-sm;
+      transition: color $transition-base;
+
+      &:hover {
+        color: $gold;
+      }
+    }
   }
 }
 

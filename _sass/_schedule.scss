@@ -137,6 +137,15 @@
   color: lighten($navy, 25%);
 }
 
+.schedule-session-name {
+  font-size: $font-size-xs;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--session-color, $gold);
+  margin-bottom: $spacing-xs;
+}
+
 .schedule-description {
   font-size: $font-size-sm;
   color: lighten($navy, 30%);

@@ -1,24 +1,24 @@
-<section class="section schedule" id="schedule">
+<section class="section schedule" id="schedule" aria-label="Conference schedule">
   <div class="container">
     <h2 class="section-title">Schedule</h2>
-    <p class="section-subtitle">All times in Eastern Daylight Time (EDT, UTC−4)</p>
+    <p class="section-subtitle">All times in Eastern Daylight Time (EDT, UTC-4)</p>
 
-    <div class="schedule-tabs">
-      <button class="schedule-tab active" data-day="1">
+    <div class="schedule-tabs" role="tablist" aria-label="Schedule days">
+      <button class="schedule-tab active" data-day="1" role="tab" aria-selected="true" aria-controls="schedule-day-1" id="tab-day-1">
         Day 1 — Thursday, July 16
       </button>
-      <button class="schedule-tab" data-day="2">
+      <button class="schedule-tab" data-day="2" role="tab" aria-selected="false" aria-controls="schedule-day-2" id="tab-day-2">
         Day 2 — Friday, July 17
       </button>
     </div>
 
-    <div class="schedule-day schedule-day--active" id="schedule-day-1">
+    <div class="schedule-day schedule-day--active" id="schedule-day-1" role="tabpanel" aria-labelledby="tab-day-1">
       {% for item in site.data.schedule_day1 %}
       {% include schedule-item.html item=item %}
       {% endfor %}
     </div>
 
-    <div class="schedule-day" id="schedule-day-2">
+    <div class="schedule-day" id="schedule-day-2" role="tabpanel" aria-labelledby="tab-day-2">
       {% for item in site.data.schedule_day2 %}
       {% include schedule-item.html item=item %}
       {% endfor %}

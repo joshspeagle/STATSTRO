@@ -4,13 +4,18 @@
     <p class="section-subtitle">Generously sponsored by</p>
     <div class="sponsor-grid">
       {% for sponsor in site.data.sponsors %}
-      <a href="{{ sponsor.url }}" class="sponsor-item" target="_blank" rel="noopener noreferrer">
+      <a href="{{ sponsor.url }}" class="sponsor-item" target="_blank" rel="noopener noreferrer" aria-label="{{ sponsor.name }}">
         {% if sponsor.logo != "" %}
         <img src="{{ '/assets/images/logos/' | append: sponsor.logo | relative_url }}"
-             alt="{{ sponsor.name }}"
+             alt="{{ sponsor.name }} logo"
              loading="lazy">
         {% else %}
-        <span class="sponsor-name">{{ sponsor.short_name }}</span>
+        <div class="sponsor-icon-name">
+          {% if sponsor.icon %}
+          <i class="{{ sponsor.icon }}" aria-hidden="true"></i>
+          {% endif %}
+          <span class="sponsor-name">{{ sponsor.short_name }}</span>
+        </div>
         {% endif %}
       </a>
       {% endfor %}

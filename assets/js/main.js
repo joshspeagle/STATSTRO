@@ -65,8 +65,12 @@
     tab.addEventListener('click', () => {
       const day = tab.dataset.day;
 
-      tabs.forEach(t => t.classList.remove('active'));
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
       tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
 
       days.forEach(d => d.classList.remove('schedule-day--active'));
       const target = document.getElementById(`schedule-day-${day}`);

@@ -3,8 +3,10 @@
 {% endif %}
 
 <div class="schedule-item schedule-item--{{ include.item.type }}"
-     {% if session %}style="--session-color: {{ session.color }}"{% endif %}>
-  <div class="schedule-time">{{ include.item.time }}</div>
+     {% if session %}style="--session-color: {{ session.color }}"{% endif %}
+     role="listitem"
+     aria-label="{{ include.item.time }} — {{ include.item.title }}{% if include.item.speaker and include.item.speaker != 'TBD' %}, {{ include.item.speaker }}{% endif %}">
+  <div class="schedule-time" aria-label="Time: {{ include.item.time }}">{{ include.item.time }}</div>
   <div class="schedule-details">
     <div class="schedule-item-header">
       {% if include.item.title == "TBD" or include.item.title == "" %}
@@ -13,7 +15,7 @@
       <h4 class="schedule-item-title">{{ include.item.title }}</h4>
       {% endif %}
       {% if include.item.type != "break" and include.item.type != "ceremony" and include.item.type != "social" %}
-      <span class="schedule-type-badge">{{ include.item.type | capitalize }}</span>
+      <span class="schedule-type-badge" aria-label="Session type: {{ include.item.type }}">{{ include.item.type | capitalize }}</span>
       {% endif %}
     </div>
     {% if include.item.speaker %}
@@ -21,6 +23,9 @@
       {% if include.item.speaker == "TBD" %}Speaker TBD{% else %}{{ include.item.speaker }}{% endif %}
       {% if include.item.affiliation %}<span class="schedule-affiliation">— {{ include.item.affiliation }}</span>{% endif %}
     </p>
+    {% endif %}
+    {% if session %}
+    <p class="schedule-session-name" aria-label="Part of session: {{ session.name }}">{{ session.name }}</p>
     {% endif %}
     {% if include.item.description %}
     <p class="schedule-description">{{ include.item.description }}</p>
