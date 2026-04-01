@@ -6,12 +6,12 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba($navy, 0.95);
+  background: var(--color-nav-bg);
   backdrop-filter: blur(10px);
-  transition: background $transition-base, box-shadow $transition-base;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 
   &.scrolled {
-    box-shadow: $shadow-md;
+    box-shadow: var(--color-shadow-md);
   }
 }
 
@@ -42,9 +42,10 @@
   display: flex;
   list-style: none;
   gap: $spacing-lg;
+  align-items: center;
 
   a {
-    color: $cream;
+    color: var(--color-text);
     text-decoration: none;
     font-size: $font-size-sm;
     font-weight: 500;
@@ -75,6 +76,37 @@
   }
 }
 
+// Theme toggle button
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text);
+  font-size: $font-size-base;
+  transition: all $transition-base;
+  flex-shrink: 0;
+
+  &:hover {
+    color: $gold;
+    border-color: $gold;
+  }
+
+  .fa-sun { display: none; }
+  .fa-moon { display: none; }
+}
+
+// Show correct icon per theme
+:root .theme-toggle .fa-sun { display: inline; }
+:root .theme-toggle .fa-moon { display: none; }
+[data-theme="light"] .theme-toggle .fa-sun { display: none; }
+[data-theme="light"] .theme-toggle .fa-moon { display: inline; }
+
 // Mobile nav toggle
 .nav-toggle {
   display: none;
@@ -90,7 +122,7 @@
     display: block;
     width: 24px;
     height: 2px;
-    background: $cream;
+    background: var(--color-text);
     transition: all $transition-base;
   }
 
@@ -118,7 +150,8 @@
     top: 64px;
     left: 0;
     right: 0;
-    background: rgba($navy, 0.98);
+    background: var(--color-nav-mobile-bg);
+    backdrop-filter: blur(10px);
     flex-direction: column;
     padding: $spacing-lg $container-padding;
     gap: $spacing-sm;
@@ -131,5 +164,9 @@
       padding: $spacing-md 0;
       font-size: $font-size-base;
     }
+  }
+
+  .theme-toggle {
+    align-self: flex-start;
   }
 }
