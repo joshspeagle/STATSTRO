@@ -1,4 +1,12 @@
 <head>
+  <script>
+    (function() {
+      var stored = localStorage.getItem('theme');
+      if (stored) { document.documentElement.dataset.theme = stored; return; }
+      var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = prefersLight ? 'light' : 'dark';
+    })();
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ site.title }} — {{ site.conference.tagline }}</title>

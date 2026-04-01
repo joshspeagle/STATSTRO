@@ -3,6 +3,39 @@
  * Smooth scroll, navigation, schedule tabs, scroll reveals
  */
 (function () {
+  // --- Theme toggle ---
+  function getPreferredTheme() {
+    var stored = localStorage.getItem('theme');
+    if (stored) return stored;
+    if (window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
+    return 'dark';
+  }
+
+  function setTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('theme', theme);
+  }
+
+  // Ensure theme is set (flash prevention script may have already set it)
+  if (!document.documentElement.dataset.theme) {
+    setTheme(getPreferredTheme());
+  }
+
+  var themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function() {
+      var current = document.documentElement.dataset.theme || 'dark';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+  // Listen for system preference changes (only if user hasn't manually chosen)
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e) {
+    if (!localStorage.getItem('theme')) {
+      setTheme(e.matches ? 'light' : 'dark');
+    }
+  });
+
   // --- Smooth scroll for anchor links ---
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
