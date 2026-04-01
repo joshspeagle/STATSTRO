@@ -332,9 +332,8 @@
     if (chain.trace.length < 2) return;
 
     const traceFade = Math.min(1, totalSamples / 100);
-    // Cold chain thicker, hot chain thinner
-    const lineWidth = chainIdx === 0 ? 1.2 : chainIdx === 1 ? 0.8 : 0.5;
-    const baseAlpha = chainIdx === 0 ? 0.25 : chainIdx === 1 ? 0.15 : 0.10;
+    const lineWidth = chainIdx === 0 ? 1.5 : chainIdx === 1 ? 1.2 : 1.0;
+    const baseAlpha = chainIdx === 0 ? 0.35 : chainIdx === 1 ? 0.30 : 0.25;
 
     ctx.strokeStyle = color;
     ctx.lineWidth = lineWidth;
@@ -348,9 +347,37 @@
     ctx.globalAlpha = 1;
   }
 
+  // Draw a chain's current position as a bright walker dot
+  function drawChainWalker(chain, color, chainIdx) {
+    const rgb = hexToRgb(color);
+    const cx = chain.x * width;
+    const cy = chain.y * height;
+    const radius = chainIdx === 0 ? 5 : chainIdx === 1 ? 4 : 3.5;
+
+    // Outer glow
+    const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius * 3);
+    gradient.addColorStop(0, `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.3)`);
+    gradient.addColorStop(1, `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0)`);
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(cx, cy, radius * 3, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Solid dot
+    ctx.beginPath();
+    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.9)`;
+    ctx.fill();
+
+    // Bright center
+    ctx.beginPath();
+    ctx.arc(cx, cy, radius * 0.4, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255, 255, 255, 0.6)`;
+    ctx.fill();
+  }
+
   // Draw a chain's samples
   function drawChainSamples(chain, color, chainIdx) {
-    // Parse the chain color to RGB for alpha control
     const rgb = hexToRgb(color);
 
     for (let i = 0; i < chain.samples.length; i++) {
@@ -358,67 +385,61 @@
       s.age++;
 
       const recentFraction = i / chain.samples.length;
-      const isRecent = i > chain.samples.length - 15;
+      const radius = chainIdx === 0 ? 1.8 : chainIdx === 1 ? 1.5 : 1.2;
+      const alphaScale = chainIdx === 0 ? 1.0 : chainIdx === 1 ? 0.7 : 0.5;
+      const alpha = (0.06 + 0.20 * recentFraction) * alphaScale;
 
-      if (chainIdx === 0 && isRecent) {
-        // Cold chain: glowing recent samples
-        const glow = 1 - (chain.samples.length - i) / 15;
-        ctx.beginPath();
-        ctx.arc(s.x * width, s.y * height, 3 + glow * 2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${0.6 * glow + 0.15})`;
-        ctx.fill();
-      } else {
-        // Size and alpha decrease with temperature
-        const radius = chainIdx === 0 ? 1.8 : chainIdx === 1 ? 1.3 : 0.9;
-        const alphaScale = chainIdx === 0 ? 1.0 : chainIdx === 1 ? 0.6 : 0.35;
-        const alpha = (0.05 + 0.18 * recentFraction) * alphaScale;
-
-        ctx.beginPath();
-        ctx.arc(s.x * width, s.y * height, radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
-        ctx.fill();
-      }
+      ctx.beginPath();
+      ctx.arc(s.x * width, s.y * height, radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
+      ctx.fill();
     }
   }
 
-  // Draw swap events as brief arcs between chains
+  // Draw swap events: colored arcs showing the two chains that swapped
   function drawSwaps() {
     for (const swap of recentSwaps) {
-      const progress = swap.age / 30;
-      const alpha = 0.4 * (1 - progress);
+      const progress = swap.age / 40;
+      const alpha = 0.6 * (1 - progress);
       if (alpha < 0.01) continue;
 
       const x1 = swap.x1 * width, y1 = swap.y1 * height;
       const x2 = swap.x2 * width, y2 = swap.y2 * height;
-
-      // Draw a pulsing arc between the two swap positions
       const midX = (x1 + x2) / 2;
       const midY = (y1 + y2) / 2;
       const dx = x2 - x1, dy = y2 - y1;
-      const dist = Math.sqrt(dx * dx + dy * dy);
 
-      // Curved control point perpendicular to the line
+      // Curved control point
       const cpX = midX - dy * 0.3;
       const cpY = midY + dx * 0.3;
 
-      ctx.strokeStyle = `rgba(245, 240, 232, ${alpha})`;
-      ctx.lineWidth = 1.5 * (1 - progress);
-      ctx.setLineDash([2, 3]);
+      // Draw arc in first chain's color
+      ctx.strokeStyle = swap.color1;
+      ctx.globalAlpha = alpha;
+      ctx.lineWidth = 2 * (1 - progress * 0.5);
+      ctx.setLineDash([3, 4]);
       ctx.beginPath();
       ctx.moveTo(x1, y1);
       ctx.quadraticCurveTo(cpX, cpY, x2, y2);
       ctx.stroke();
       ctx.setLineDash([]);
 
-      // Small flare at each endpoint
-      const flareR = 4 * (1 - progress);
-      ctx.fillStyle = `rgba(245, 240, 232, ${alpha * 0.5})`;
+      // Flare at each endpoint in its chain color
+      const flareR = 6 * (1 - progress);
+      const rgb1 = hexToRgb(swap.color1);
+      const rgb2 = hexToRgb(swap.color2);
+
+      ctx.fillStyle = `rgba(${rgb1.r}, ${rgb1.g}, ${rgb1.b}, ${alpha * 0.7})`;
       ctx.beginPath();
       ctx.arc(x1, y1, flareR, 0, Math.PI * 2);
       ctx.fill();
+
+      ctx.fillStyle = `rgba(${rgb2.r}, ${rgb2.g}, ${rgb2.b}, ${alpha * 0.7})`;
       ctx.beginPath();
       ctx.arc(x2, y2, flareR, 0, Math.PI * 2);
       ctx.fill();
+
+      ctx.globalAlpha = 1;
     }
   }
 
@@ -446,8 +467,11 @@
 
     // Draw each chain (hot first so cold draws on top)
     for (let ci = chains.length - 1; ci >= 0; ci--) {
-      drawChainTrace(chains[ci], chainColors[ci], ci);
       drawChainSamples(chains[ci], chainColors[ci], ci);
+    }
+    for (let ci = chains.length - 1; ci >= 0; ci--) {
+      drawChainTrace(chains[ci], chainColors[ci], ci);
+      drawChainWalker(chains[ci], chainColors[ci], ci);
     }
 
     // Run MCMC steps for all chains
@@ -469,7 +493,7 @@
     }
 
     // Age and prune swap visuals
-    recentSwaps = recentSwaps.filter(s => { s.age++; return s.age < 30; });
+    recentSwaps = recentSwaps.filter(s => { s.age++; return s.age < 40; });
 
     // Slow down after initial burst
     if (totalSamples > 600) {
