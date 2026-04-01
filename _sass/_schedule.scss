@@ -10,24 +10,24 @@
 .schedule-tab {
   padding: $spacing-md $spacing-xl;
   background: none;
-  border: 2px solid rgba($navy, 0.15);
+  border: 2px solid var(--color-border);
   border-radius: $border-radius;
   font-family: $font-body;
   font-size: $font-size-base;
   font-weight: 600;
-  color: lighten($navy, 20%);
+  color: var(--color-text-muted);
   cursor: pointer;
   transition: all $transition-base;
 
   &:hover {
     border-color: $gold;
-    color: $navy;
+    color: var(--color-heading);
   }
 
   &.active {
-    background: $navy;
-    border-color: $navy;
-    color: $cream;
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #FFFFFF;
   }
 }
 
@@ -45,7 +45,7 @@
   display: flex;
   gap: $spacing-xl;
   padding: $spacing-lg 0;
-  border-bottom: 1px solid rgba($navy, 0.08);
+  border-bottom: 1px solid var(--color-border);
 
   &:last-child {
     border-bottom: none;
@@ -67,7 +67,7 @@
 
     .schedule-details {
       padding-left: $spacing-lg;
-      border-left: 3px solid rgba($navy, 0.1);
+      border-left: 3px solid var(--color-break-border);
     }
   }
 
@@ -86,7 +86,7 @@
   font-family: $font-body;
   font-size: $font-size-sm;
   font-weight: 600;
-  color: $navy;
+  color: var(--color-heading);
   padding-top: 2px;
 
   @media (max-width: $bp-sm) {
@@ -111,7 +111,7 @@
   font-family: $font-body;
   font-size: $font-size-base;
   font-weight: 600;
-  color: $navy;
+  color: var(--color-heading);
 }
 
 .schedule-type-badge {
@@ -121,20 +121,20 @@
   letter-spacing: 0.5px;
   padding: 2px $spacing-sm;
   border-radius: $border-radius-sm;
-  background: rgba($navy, 0.06);
-  color: lighten($navy, 25%);
+  background: var(--color-badge-bg);
+  color: var(--color-badge-text);
 }
 
 .schedule-speaker {
   font-size: $font-size-sm;
-  color: $navy;
+  color: var(--color-heading);
   font-weight: 500;
   margin-bottom: $spacing-xs;
 }
 
 .schedule-affiliation {
   font-weight: 400;
-  color: lighten($navy, 25%);
+  color: var(--color-text-muted);
 }
 
 .schedule-session-name {
@@ -148,7 +148,7 @@
 
 .schedule-description {
   font-size: $font-size-sm;
-  color: lighten($navy, 30%);
+  color: var(--color-text-muted);
   margin-bottom: 0;
 }
 

@@ -13,7 +13,7 @@
 
 .about-text {
   font-size: $font-size-lg;
-  color: lighten($navy, 15%);
+  color: var(--color-text-muted);
 
   p:last-child {
     margin-bottom: 0;
@@ -22,7 +22,7 @@
 
 .about-sessions h3 {
   margin-bottom: $spacing-lg;
-  color: $navy;
+  color: var(--color-heading);
 }
 
 .session-list {
@@ -33,12 +33,12 @@
   padding: $spacing-md $spacing-lg;
   margin-bottom: $spacing-sm;
   border-left: 4px solid var(--session-color, $gold);
-  background: white;
+  background: var(--color-bg-surface);
   border-radius: 0 $border-radius-sm $border-radius-sm 0;
   display: flex;
   flex-direction: column;
   gap: $spacing-xs;
-  box-shadow: $shadow-sm;
+  box-shadow: var(--color-shadow-sm);
 }
 
 .session-header {
@@ -50,17 +50,17 @@
 
 .session-name {
   font-weight: 600;
-  color: $navy;
+  color: var(--color-heading);
 }
 
 .session-day {
   font-size: $font-size-sm;
-  color: lighten($navy, 30%);
+  color: var(--color-text-muted);
 }
 
 .session-description {
   font-size: $font-size-sm;
-  color: lighten($navy, 25%);
+  color: var(--color-text-muted);
   line-height: 1.4;
 }
 
@@ -83,19 +83,19 @@
 
 .venue-card {
   padding: $spacing-lg;
-  background: white;
+  background: var(--color-bg-surface);
   border-radius: $border-radius;
-  box-shadow: $shadow-sm;
+  box-shadow: var(--color-shadow-sm);
 
   h3 {
     font-size: $font-size-lg;
     margin-bottom: $spacing-sm;
-    color: $navy;
+    color: var(--color-heading);
   }
 
   p {
     margin-bottom: $spacing-xs;
-    color: lighten($navy, 15%);
+    color: var(--color-text-muted);
 
     &:last-child {
       margin-bottom: 0;
@@ -106,17 +106,14 @@
 .venue-map {
   border-radius: $border-radius;
   overflow: hidden;
-  box-shadow: $shadow-md;
+  box-shadow: var(--color-shadow-md);
   min-height: 350px;
 }
 
 // Registration Section
 .registration {
-  background: $navy !important;
-  color: $cream;
-
   .section-title {
-    color: $cream;
+    color: var(--color-heading);
   }
 }
 
@@ -131,7 +128,7 @@
 
   p {
     font-size: $font-size-lg;
-    color: rgba($cream, 0.85);
+    color: var(--color-text-muted);
     margin-bottom: $spacing-xl;
   }
 }
@@ -139,7 +136,7 @@
 .registration-note {
   text-align: center;
   font-size: $font-size-sm;
-  color: rgba($cream, 0.7);
+  color: var(--color-text-muted);
   margin-bottom: $spacing-2xl;
 
   a {
@@ -163,8 +160,8 @@
 
 .registration-card {
   padding: $spacing-xl;
-  background: rgba(white, 0.05);
-  border: 1px solid rgba($gold, 0.2);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-accent);
   border-radius: $border-radius;
 
   h3 {
@@ -174,7 +171,7 @@
   }
 
   p {
-    color: rgba($cream, 0.8);
+    color: var(--color-text-muted);
     font-size: $font-size-sm;
     margin-bottom: 0;
   }
@@ -195,15 +192,15 @@
   align-items: center;
   justify-content: center;
   padding: $spacing-lg $spacing-xl;
-  background: white;
+  background: var(--color-bg-surface);
   border-radius: $border-radius;
-  box-shadow: $shadow-sm;
+  box-shadow: var(--color-shadow-sm);
   transition: all $transition-base;
   text-decoration: none;
   min-width: 200px;
 
   &:hover {
-    box-shadow: $shadow-md;
+    box-shadow: var(--color-shadow-md);
     transform: translateY(-2px);
   }
 
@@ -229,7 +226,7 @@
   font-family: $font-body;
   font-weight: 600;
   font-size: $font-size-sm;
-  color: $navy;
+  color: var(--color-heading);
   text-align: center;
 }
 
@@ -249,9 +246,9 @@
 .past-year-card {
   text-align: center;
   padding: $spacing-xl;
-  background: white;
+  background: var(--color-bg-surface);
   border-radius: $border-radius;
-  box-shadow: $shadow-sm;
+  box-shadow: var(--color-shadow-sm);
   border-top: 3px solid $gold;
 
   h3 {
@@ -262,11 +259,11 @@
 
 .past-year-theme {
   font-style: italic;
-  color: lighten($navy, 20%);
+  color: var(--color-text-muted);
   margin-bottom: $spacing-xs;
 }
 
 .past-year-date {
   font-size: $font-size-sm;
-  color: lighten($navy, 35%);
+  color: var(--color-text-muted);
 }

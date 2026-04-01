@@ -22,15 +22,15 @@
 }
 
 .speaker-card {
-  background: white;
+  background: var(--color-bg-surface);
   border-radius: $border-radius;
-  box-shadow: $shadow-sm;
+  box-shadow: var(--color-shadow-sm);
   overflow: hidden;
   transition: all $transition-base;
   border-top: 3px solid var(--session-color, $gold);
 
   &:hover {
-    box-shadow: $shadow-md;
+    box-shadow: var(--color-shadow-md);
     transform: translateY(-3px);
   }
 }
@@ -39,7 +39,7 @@
   width: 100%;
   aspect-ratio: 1;
   overflow: hidden;
-  background: lighten($cream, 3%);
+  background: var(--color-bg-surface);
 
   img {
     width: 100%;
@@ -54,8 +54,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, $cream 0%, darken($cream, 5%) 100%);
-  color: lighten($navy, 40%);
+  background: var(--color-placeholder-bg);
+  color: var(--color-placeholder-fg);
 
   svg {
     width: 60px;
@@ -70,12 +70,12 @@
 .speaker-name {
   font-size: $font-size-lg;
   margin-bottom: $spacing-xs;
-  color: $navy;
+  color: var(--color-heading);
 }
 
 .speaker-affiliation {
   font-size: $font-size-sm;
-  color: lighten($navy, 25%);
+  color: var(--color-text-muted);
   margin-bottom: $spacing-sm;
 }
 
@@ -87,8 +87,8 @@
   letter-spacing: 0.5px;
   padding: $spacing-xs $spacing-sm;
   border-radius: $border-radius-sm;
-  background: rgba($navy, 0.06);
-  color: lighten($navy, 20%);
+  background: var(--color-badge-bg);
+  color: var(--color-badge-text);
 
   &--headline {
     background: rgba($gold, 0.15);
@@ -110,7 +110,7 @@
   margin-top: $spacing-sm;
   font-style: italic;
   font-size: $font-size-sm;
-  color: lighten($navy, 20%);
+  color: var(--color-text-muted);
 }
 
 // Organizer Cards
@@ -137,7 +137,7 @@
   border-radius: 50%;
   overflow: hidden;
   margin: 0 auto $spacing-lg;
-  background: $cream;
+  background: var(--color-bg-surface);
 
   img {
     width: 100%;
@@ -152,8 +152,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, $cream 0%, darken($cream, 5%) 100%);
-  color: lighten($navy, 40%);
+  background: var(--color-placeholder-bg);
+  color: var(--color-placeholder-fg);
 
   svg {
     width: 50px;
@@ -166,7 +166,7 @@
   margin-bottom: $spacing-xs;
 
   a {
-    color: $navy;
+    color: var(--color-heading);
 
     &:hover {
       color: $teal;
@@ -185,6 +185,6 @@
 
 .organizer-affiliation {
   font-size: $font-size-sm;
-  color: lighten($navy, 25%);
+  color: var(--color-text-muted);
   line-height: 1.4;
 }
