@@ -47,7 +47,7 @@
   const baseProposalSD = 0.03;
   const maxSamplesPerChain = 800;
   const maxTraceLength = 60;
-  let samplesPerFrame = 2;
+  let samplesPerFrame = 1;
   let totalSamples = 0;
 
   // Swap visualization
