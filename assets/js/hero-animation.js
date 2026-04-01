@@ -1,7 +1,7 @@
 /**
- * Parallel-Tempered MCMC Hero Animation
- * Three chains at different temperatures explore a curved 2D posterior
- * with banana-shaped modes, visualized as celestial cartography.
+ * MCMC Sampler Hero Animation
+ * Single chain explores a curved 2D posterior with banana-shaped modes,
+ * visualized as celestial cartography. Supports dark/light themes.
  * The cursor creates a gravitational well that biases sampling.
  */
 (function () {
@@ -15,15 +15,45 @@
   let gridResolution = 80;
   let time = 0;
 
-  // Design tokens
-  const COLORS = {
-    navy: '#0B1D3A',
-    gold: '#D4A843',
-    teal: '#2A9D8F',
-    cream: '#F5F0E8',
-    coral: '#C45B3E',
-    gridLine: 'rgba(245, 240, 232, 0.04)',
+  // Theme palettes
+  const THEMES = {
+    dark: {
+      bg: '#0B1D3A',
+      star: { r: 245, g: 240, b: 232 },
+      gridLine: 'rgba(245, 240, 232, 0.04)',
+      contourFill: { r: 42, g: 157, b: 143 },
+      contourLine: { r: 212, g: 168, b: 67, alphaScale: 0.15 },
+      sampleOld: { r: 42, g: 157, b: 143 },
+      sampleRecent: { r: 212, g: 168, b: 67 },
+      trace: '#D4A843',
+      walker: { r: 212, g: 168, b: 67 },
+      walkerCenter: 'rgba(255, 255, 255, 0.6)',
+      cursorGlow: { r: 212, g: 168, b: 67, innerAlpha: 0.15, midAlpha: 0.06 },
+      constellationLine: { r: 212, g: 168, b: 67, alpha: 0.12 },
+      overlayGradient: ['transparent', 'rgba(6, 15, 31, 0.7)'],
+    },
+    light: {
+      bg: '#F5F0E8',
+      star: { r: 11, g: 29, b: 58 },
+      gridLine: 'rgba(11, 29, 58, 0.06)',
+      contourFill: { r: 42, g: 157, b: 143 },
+      contourLine: { r: 180, g: 130, b: 40, alphaScale: 0.18 },
+      sampleOld: { r: 31, g: 122, b: 111 },
+      sampleRecent: { r: 180, g: 130, b: 40 },
+      trace: '#0B1D3A',
+      walker: { r: 180, g: 130, b: 40 },
+      walkerCenter: 'rgba(0, 0, 0, 0.4)',
+      cursorGlow: { r: 212, g: 168, b: 67, innerAlpha: 0.20, midAlpha: 0.08 },
+      constellationLine: { r: 11, g: 29, b: 58, alpha: 0.10 },
+      overlayGradient: ['transparent', 'rgba(245, 240, 232, 0.5)'],
+    },
   };
+
+  function getTheme() {
+    return document.documentElement.dataset.theme === 'light' ? THEMES.light : THEMES.dark;
+  }
+
+  let theme = getTheme();
 
   // Target distribution: 3 banana-shaped modes (closer together for mode crossing)
   const modes = [
@@ -154,7 +184,7 @@
   }
 
   function drawGrid() {
-    ctx.strokeStyle = COLORS.gridLine;
+    ctx.strokeStyle = theme.gridLine;
     ctx.lineWidth = 0.5;
 
     const spacing = Math.max(width, height) / 20;
@@ -173,12 +203,13 @@
   }
 
   function drawStars() {
+    const s = theme.star;
     for (const star of stars) {
       const twinkle = 0.5 + 0.5 * Math.sin(time * star.twinkleSpeed + star.twinkleOffset);
       const alpha = 0.2 + 0.6 * twinkle;
       ctx.beginPath();
       ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(245, 240, 232, ${alpha})`;
+      ctx.fillStyle = `rgba(${s.r}, ${s.g}, ${s.b}, ${alpha})`;
       ctx.fill();
     }
   }
@@ -186,6 +217,7 @@
   function drawContours() {
     if (!contourData) return;
 
+    const cf = theme.contourFill; const cl = theme.contourLine;
     const { grid, maxVal } = contourData;
     const levels = [0.08, 0.15, 0.25, 0.4, 0.6];
     const alphas = [0.06, 0.08, 0.10, 0.13, 0.18];
@@ -197,7 +229,7 @@
       const alpha = alphas[l] * contourFade;
       if (alpha < 0.01) continue;
 
-      ctx.fillStyle = `rgba(42, 157, 143, ${alpha})`;
+      ctx.fillStyle = `rgba(${cf.r}, ${cf.g}, ${cf.b}, ${alpha})`;
 
       const cellW = width / (gridResolution - 1);
       const cellH = height / (gridResolution - 1);
@@ -217,7 +249,7 @@
       const lineLevels = [0.15, 0.35, 0.55];
       for (const level of lineLevels) {
         const threshold = level * maxVal;
-        ctx.strokeStyle = `rgba(212, 168, 67, ${0.15 * lineAlpha})`;
+        ctx.strokeStyle = `rgba(${cl.r}, ${cl.g}, ${cl.b}, ${cl.alphaScale * lineAlpha})`;
         ctx.lineWidth = 1;
 
         const cellW = width / (gridResolution - 1);
@@ -248,14 +280,15 @@
   function drawCursorAttractor() {
     if (cursorX === null || cursorY === null) return;
 
+    const cg = theme.cursorGlow;
     const cx = cursorX * width;
     const cy = cursorY * height;
     const radius = cursorSD * Math.max(width, height);
 
     const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
-    gradient.addColorStop(0, 'rgba(212, 168, 67, 0.15)');
-    gradient.addColorStop(0.4, 'rgba(212, 168, 67, 0.06)');
-    gradient.addColorStop(1, 'rgba(212, 168, 67, 0)');
+    gradient.addColorStop(0, `rgba(${cg.r}, ${cg.g}, ${cg.b}, ${cg.innerAlpha})`);
+    gradient.addColorStop(0.4, `rgba(${cg.r}, ${cg.g}, ${cg.b}, ${cg.midAlpha})`);
+    gradient.addColorStop(1, `rgba(${cg.r}, ${cg.g}, ${cg.b}, 0)`);
 
     ctx.fillStyle = gradient;
     ctx.beginPath();
@@ -267,10 +300,11 @@
   function drawConstellationLines() {
     if (totalSamples < 200) return;
 
+    const cl = theme.constellationLine;
     const fade = Math.min(1, (totalSamples - 200) / 400);
     const modeCenters = modes.map(m => ({ x: m.x * width, y: m.y * height }));
 
-    ctx.strokeStyle = `rgba(212, 168, 67, ${0.12 * fade})`;
+    ctx.strokeStyle = `rgba(${cl.r}, ${cl.g}, ${cl.b}, ${cl.alpha * fade})`;
     ctx.lineWidth = 1;
     ctx.setLineDash([4, 8]);
 
@@ -290,7 +324,7 @@
     if (chain.length < 2) return;
 
     const traceFade = Math.min(1, totalSamples / 100);
-    ctx.strokeStyle = COLORS.gold;
+    ctx.strokeStyle = theme.trace;
     ctx.lineWidth = 1.5;
     ctx.globalAlpha = 0.3 * traceFade;
     ctx.beginPath();
@@ -304,15 +338,15 @@
 
   // Draw the walker's current position
   function drawWalker() {
-    const rgb = hexToRgb(COLORS.gold);
+    const w = theme.walker;
     const cx = mcmcX * width;
     const cy = mcmcY * height;
     const radius = 5;
 
     // Outer glow
     const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius * 3);
-    gradient.addColorStop(0, `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.3)`);
-    gradient.addColorStop(1, `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0)`);
+    gradient.addColorStop(0, `rgba(${w.r}, ${w.g}, ${w.b}, 0.3)`);
+    gradient.addColorStop(1, `rgba(${w.r}, ${w.g}, ${w.b}, 0)`);
     ctx.fillStyle = gradient;
     ctx.beginPath();
     ctx.arc(cx, cy, radius * 3, 0, Math.PI * 2);
@@ -321,18 +355,19 @@
     // Solid dot
     ctx.beginPath();
     ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.9)`;
+    ctx.fillStyle = `rgba(${w.r}, ${w.g}, ${w.b}, 0.9)`;
     ctx.fill();
 
     // Bright center
     ctx.beginPath();
     ctx.arc(cx, cy, radius * 0.4, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(255, 255, 255, 0.6)`;
+    ctx.fillStyle = theme.walkerCenter;
     ctx.fill();
   }
 
   // Draw accumulated samples
   function drawSamples() {
+    const so = theme.sampleOld; const sr = theme.sampleRecent;
     for (let i = 0; i < samples.length; i++) {
       const s = samples[i];
       s.age++;
@@ -344,30 +379,24 @@
         const glow = 1 - (samples.length - i) / 20;
         ctx.beginPath();
         ctx.arc(s.x * width, s.y * height, 3 + glow * 2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(212, 168, 67, ${0.6 * glow + 0.1})`;
+        ctx.fillStyle = `rgba(${sr.r}, ${sr.g}, ${sr.b}, ${0.6 * glow + 0.1})`;
         ctx.fill();
       } else {
         const alpha = 0.05 + 0.15 * recentFraction;
         ctx.beginPath();
         ctx.arc(s.x * width, s.y * height, 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(42, 157, 143, ${alpha})`;
+        ctx.fillStyle = `rgba(${so.r}, ${so.g}, ${so.b}, ${alpha})`;
         ctx.fill();
       }
     }
   }
 
-  function hexToRgb(hex) {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    return { r, g, b };
-  }
-
   function draw() {
     time++;
+    theme = getTheme();
 
     // Background
-    ctx.fillStyle = COLORS.navy;
+    ctx.fillStyle = theme.bg;
     ctx.fillRect(0, 0, width, height);
 
     // Layers
@@ -379,6 +408,16 @@
     drawSamples();
     drawChainTrace();
     drawWalker();
+
+    // Theme-dependent overlay vignette
+    const gradient = ctx.createRadialGradient(
+      width / 2, height / 2, Math.min(width, height) * 0.3,
+      width / 2, height / 2, Math.max(width, height) * 0.7
+    );
+    gradient.addColorStop(0, theme.overlayGradient[0]);
+    gradient.addColorStop(1, theme.overlayGradient[1]);
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
 
     // Run MCMC step
     for (let s = 0; s < samplesPerFrame; s++) {
