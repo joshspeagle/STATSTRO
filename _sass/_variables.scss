@@ -75,3 +75,60 @@ $shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
 $shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
 $shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.2);
 $transition-base: 0.3s ease;
+
+// Theme CSS Custom Properties
+// Dark mode is default; light mode overrides via [data-theme="light"]
+
+:root {
+  --color-bg: #{$navy};
+  --color-bg-alt: #{$navy-light};
+  --color-bg-surface: rgba(255, 255, 255, 0.05);
+  --color-bg-surface-solid: #{$navy-light};
+  --color-text: #{$cream};
+  --color-text-muted: rgba(245, 240, 232, 0.65);
+  --color-heading: #{$cream};
+  --color-accent: #{$gold};
+  --color-accent-hover: #{$gold-light};
+  --color-link: #{$teal};
+  --color-link-hover: #{$teal-light};
+  --color-border: rgba(245, 240, 232, 0.1);
+  --color-border-accent: rgba(212, 168, 67, 0.2);
+  --color-shadow: rgba(0, 0, 0, 0.3);
+  --color-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25);
+  --color-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --color-nav-bg: rgba(11, 29, 58, 0.95);
+  --color-nav-mobile-bg: rgba(11, 29, 58, 0.98);
+  --color-placeholder-bg: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  --color-placeholder-fg: rgba(245, 240, 232, 0.4);
+  --color-badge-bg: rgba(245, 240, 232, 0.08);
+  --color-badge-text: rgba(245, 240, 232, 0.7);
+  --color-section-alt-bg: rgba(255, 255, 255, 0.03);
+  --color-break-border: rgba(245, 240, 232, 0.1);
+}
+
+[data-theme="light"] {
+  --color-bg: #{$cream};
+  --color-bg-alt: #FFFFFF;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-surface-solid: #FFFFFF;
+  --color-text: #{$navy};
+  --color-text-muted: rgba(11, 29, 58, 0.6);
+  --color-heading: #{$navy};
+  --color-accent: #{$gold};
+  --color-accent-hover: #{$gold-dark};
+  --color-link: #{$teal-dark};
+  --color-link-hover: #{$teal};
+  --color-border: rgba(11, 29, 58, 0.1);
+  --color-border-accent: rgba(11, 29, 58, 0.12);
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --color-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --color-nav-bg: rgba(245, 240, 232, 0.95);
+  --color-nav-mobile-bg: rgba(245, 240, 232, 0.98);
+  --color-placeholder-bg: linear-gradient(135deg, #{$cream} 0%, #{darken($cream, 5%)} 100%);
+  --color-placeholder-fg: #{lighten($navy, 40%)};
+  --color-badge-bg: rgba(11, 29, 58, 0.06);
+  --color-badge-text: rgba(11, 29, 58, 0.6);
+  --color-section-alt-bg: #FFFFFF;
+  --color-break-border: rgba(11, 29, 58, 0.1);
+}
