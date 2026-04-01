@@ -41,26 +41,16 @@
   // Background stars
   let stars = [];
 
-  // Parallel tempering: 3 chains at different temperatures
-  const temperatures = [1, 3, 10];
-  const chainColors = [COLORS.gold, COLORS.teal, COLORS.coral];
-  const baseProposalSD = 0.03;
-  const maxSamplesPerChain = 800;
-  const maxTraceLength = 60;
+  // MCMC sampler state
+  const proposalSD = 0.03;
+  const maxSamples = 2000;
+  const maxTraceLength = 80;
   let samplesPerFrame = 1;
   let totalSamples = 0;
-
-  // Swap visualization
-  let recentSwaps = [];
-
-  let chains = temperatures.map((T, i) => ({
-    x: 0.3 + 0.18 * i,
-    y: 0.35 + 0.18 * i,
-    T,
-    samples: [],
-    trace: [],
-    proposalSD: baseProposalSD * Math.sqrt(T),
-  }));
+  let mcmcX = 0.5;
+  let mcmcY = 0.5;
+  let samples = [];
+  let chain = [];
 
   function resize() {
     const dpr = window.devicePixelRatio || 1;
@@ -140,59 +130,27 @@
     contourData = { grid, maxVal };
   }
 
-  // Metropolis-Hastings step for a single tempered chain
-  function mcmcStep(chain) {
-    const sd = chain.proposalSD;
-    const propX = chain.x + (Math.random() - 0.5) * 2 * sd;
-    const propY = chain.y + (Math.random() - 0.5) * 2 * sd;
+  // Metropolis-Hastings step
+  function mcmcStep() {
+    const propX = mcmcX + (Math.random() - 0.5) * 2 * proposalSD;
+    const propY = mcmcY + (Math.random() - 0.5) * 2 * proposalSD;
 
     if (propX < 0 || propX > 1 || propY < 0 || propY > 1) return;
 
-    const beta = 1 / chain.T;
-    const currentP = targetDensity(chain.x, chain.y);
+    const currentP = targetDensity(mcmcX, mcmcY);
     const proposedP = targetDensity(propX, propY);
-    const logAlpha = beta * (Math.log(proposedP + 1e-30) - Math.log(currentP + 1e-30));
+    const alpha = Math.min(1, proposedP / (currentP + 1e-10));
 
-    if (Math.log(Math.random()) < logAlpha) {
-      chain.x = propX;
-      chain.y = propY;
+    if (Math.random() < alpha) {
+      mcmcX = propX;
+      mcmcY = propY;
     }
 
-    chain.samples.push({ x: chain.x, y: chain.y, age: 0 });
-    chain.trace.push({ x: chain.x, y: chain.y });
+    samples.push({ x: mcmcX, y: mcmcY, age: 0 });
+    chain.push({ x: mcmcX, y: mcmcY });
 
-    if (chain.samples.length > maxSamplesPerChain) {
-      chain.samples.shift();
-    }
-    if (chain.trace.length > maxTraceLength) {
-      chain.trace.shift();
-    }
-  }
-
-  // Parallel tempering swap between two adjacent chains
-  function attemptSwap(i, j) {
-    const c1 = chains[i], c2 = chains[j];
-    const beta1 = 1 / c1.T, beta2 = 1 / c2.T;
-    const logP1 = Math.log(targetDensity(c1.x, c1.y) + 1e-30);
-    const logP2 = Math.log(targetDensity(c2.x, c2.y) + 1e-30);
-    const logAlpha = (beta1 - beta2) * (logP2 - logP1);
-
-    if (Math.log(Math.random()) < logAlpha) {
-      // Swap positions
-      const tmpX = c1.x, tmpY = c1.y;
-      c1.x = c2.x; c1.y = c2.y;
-      c2.x = tmpX; c2.y = tmpY;
-
-      recentSwaps.push({
-        x1: c1.x, y1: c1.y,
-        x2: c2.x, y2: c2.y,
-        age: 0,
-        color1: chainColors[i],
-        color2: chainColors[j],
-      });
-      return true;
-    }
-    return false;
+    if (samples.length > maxSamples) samples.shift();
+    if (chain.length > maxTraceLength) chain.shift();
   }
 
   function drawGrid() {
@@ -327,32 +285,29 @@
     ctx.setLineDash([]);
   }
 
-  // Draw a chain's trace (recent path)
-  function drawChainTrace(chain, color, chainIdx) {
-    if (chain.trace.length < 2) return;
+  // Draw the chain trace (recent path)
+  function drawChainTrace() {
+    if (chain.length < 2) return;
 
     const traceFade = Math.min(1, totalSamples / 100);
-    const lineWidth = chainIdx === 0 ? 1.5 : chainIdx === 1 ? 1.2 : 1.0;
-    const baseAlpha = chainIdx === 0 ? 0.35 : chainIdx === 1 ? 0.30 : 0.25;
-
-    ctx.strokeStyle = color;
-    ctx.lineWidth = lineWidth;
-    ctx.globalAlpha = baseAlpha * traceFade;
+    ctx.strokeStyle = COLORS.gold;
+    ctx.lineWidth = 1.5;
+    ctx.globalAlpha = 0.3 * traceFade;
     ctx.beginPath();
-    ctx.moveTo(chain.trace[0].x * width, chain.trace[0].y * height);
-    for (let i = 1; i < chain.trace.length; i++) {
-      ctx.lineTo(chain.trace[i].x * width, chain.trace[i].y * height);
+    ctx.moveTo(chain[0].x * width, chain[0].y * height);
+    for (let i = 1; i < chain.length; i++) {
+      ctx.lineTo(chain[i].x * width, chain[i].y * height);
     }
     ctx.stroke();
     ctx.globalAlpha = 1;
   }
 
-  // Draw a chain's current position as a bright walker dot
-  function drawChainWalker(chain, color, chainIdx) {
-    const rgb = hexToRgb(color);
-    const cx = chain.x * width;
-    const cy = chain.y * height;
-    const radius = chainIdx === 0 ? 5 : chainIdx === 1 ? 4 : 3.5;
+  // Draw the walker's current position
+  function drawWalker() {
+    const rgb = hexToRgb(COLORS.gold);
+    const cx = mcmcX * width;
+    const cy = mcmcY * height;
+    const radius = 5;
 
     // Outer glow
     const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius * 3);
@@ -376,70 +331,28 @@
     ctx.fill();
   }
 
-  // Draw a chain's samples
-  function drawChainSamples(chain, color, chainIdx) {
-    const rgb = hexToRgb(color);
-
-    for (let i = 0; i < chain.samples.length; i++) {
-      const s = chain.samples[i];
+  // Draw accumulated samples
+  function drawSamples() {
+    for (let i = 0; i < samples.length; i++) {
+      const s = samples[i];
       s.age++;
 
-      const recentFraction = i / chain.samples.length;
-      const radius = chainIdx === 0 ? 1.8 : chainIdx === 1 ? 1.5 : 1.2;
-      const alphaScale = chainIdx === 0 ? 1.0 : chainIdx === 1 ? 0.7 : 0.5;
-      const alpha = (0.06 + 0.20 * recentFraction) * alphaScale;
+      const recentFraction = i / samples.length;
+      const isRecent = i > samples.length - 20;
 
-      ctx.beginPath();
-      ctx.arc(s.x * width, s.y * height, radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${alpha})`;
-      ctx.fill();
-    }
-  }
-
-  // Draw swap events: colored arcs showing the two chains that swapped
-  function drawSwaps() {
-    for (const swap of recentSwaps) {
-      const progress = swap.age / 40;
-      const alpha = 0.6 * (1 - progress);
-      if (alpha < 0.01) continue;
-
-      const x1 = swap.x1 * width, y1 = swap.y1 * height;
-      const x2 = swap.x2 * width, y2 = swap.y2 * height;
-      const midX = (x1 + x2) / 2;
-      const midY = (y1 + y2) / 2;
-      const dx = x2 - x1, dy = y2 - y1;
-
-      // Curved control point
-      const cpX = midX - dy * 0.3;
-      const cpY = midY + dx * 0.3;
-
-      // Draw arc in first chain's color
-      ctx.strokeStyle = swap.color1;
-      ctx.globalAlpha = alpha;
-      ctx.lineWidth = 2 * (1 - progress * 0.5);
-      ctx.setLineDash([3, 4]);
-      ctx.beginPath();
-      ctx.moveTo(x1, y1);
-      ctx.quadraticCurveTo(cpX, cpY, x2, y2);
-      ctx.stroke();
-      ctx.setLineDash([]);
-
-      // Flare at each endpoint in its chain color
-      const flareR = 6 * (1 - progress);
-      const rgb1 = hexToRgb(swap.color1);
-      const rgb2 = hexToRgb(swap.color2);
-
-      ctx.fillStyle = `rgba(${rgb1.r}, ${rgb1.g}, ${rgb1.b}, ${alpha * 0.7})`;
-      ctx.beginPath();
-      ctx.arc(x1, y1, flareR, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.fillStyle = `rgba(${rgb2.r}, ${rgb2.g}, ${rgb2.b}, ${alpha * 0.7})`;
-      ctx.beginPath();
-      ctx.arc(x2, y2, flareR, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.globalAlpha = 1;
+      if (isRecent) {
+        const glow = 1 - (samples.length - i) / 20;
+        ctx.beginPath();
+        ctx.arc(s.x * width, s.y * height, 3 + glow * 2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(212, 168, 67, ${0.6 * glow + 0.1})`;
+        ctx.fill();
+      } else {
+        const alpha = 0.05 + 0.15 * recentFraction;
+        ctx.beginPath();
+        ctx.arc(s.x * width, s.y * height, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(42, 157, 143, ${alpha})`;
+        ctx.fill();
+      }
     }
   }
 
@@ -463,41 +376,14 @@
     drawContours();
     drawCursorAttractor();
     drawConstellationLines();
-    drawSwaps();
+    drawSamples();
+    drawChainTrace();
+    drawWalker();
 
-    // Draw each chain (hot first so cold draws on top)
-    for (let ci = chains.length - 1; ci >= 0; ci--) {
-      drawChainSamples(chains[ci], chainColors[ci], ci);
-    }
-    for (let ci = chains.length - 1; ci >= 0; ci--) {
-      drawChainTrace(chains[ci], chainColors[ci], ci);
-      drawChainWalker(chains[ci], chainColors[ci], ci);
-    }
-
-    // Run MCMC steps for all chains
+    // Run MCMC step
     for (let s = 0; s < samplesPerFrame; s++) {
-      for (const chain of chains) {
-        mcmcStep(chain);
-      }
+      mcmcStep();
       totalSamples++;
-    }
-
-    // Attempt temperature swaps every 15 steps
-    if (totalSamples % 15 === 0) {
-      // Randomly pick adjacent pair
-      if (Math.random() < 0.5) {
-        attemptSwap(0, 1);
-      } else {
-        attemptSwap(1, 2);
-      }
-    }
-
-    // Age and prune swap visuals
-    recentSwaps = recentSwaps.filter(s => { s.age++; return s.age < 40; });
-
-    // Slow down after initial burst
-    if (totalSamples > 600) {
-      samplesPerFrame = 1;
     }
 
     animationId = requestAnimationFrame(draw);
