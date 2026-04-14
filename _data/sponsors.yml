@@ -12,10 +12,9 @@
 
 - name: "Department of Statistical Sciences, University of Toronto"
   short_name: "Dept of Statistical Sciences"
-  logo: ""
+  logo: "statsci.png"
   icon: "fa-solid fa-chart-line"
   url: "https://www.statistics.utoronto.ca/"
-  hidden: true  # Unconfirmed — hide until sponsorship is confirmed
 
 - name: "Data Sciences Institute, University of Toronto"
   short_name: "Data Sciences Institute"
