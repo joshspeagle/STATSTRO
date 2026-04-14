@@ -6,7 +6,7 @@
 
 - name: "Canadian Institute for Theoretical Astrophysics"
   short_name: "CITA"
-  logo: ""
+  logo: "cita.png"
   icon: "fa-solid fa-atom"
   url: "https://www.cita.utoronto.ca/"
 
@@ -15,9 +15,11 @@
   logo: ""
   icon: "fa-solid fa-chart-line"
   url: "https://www.statistics.utoronto.ca/"
+  hidden: true  # Unconfirmed — hide until sponsorship is confirmed
 
 - name: "Data Sciences Institute, University of Toronto"
   short_name: "Data Sciences Institute"
   logo: ""
   icon: "fa-solid fa-database"
   url: "https://datasciences.utoronto.ca/"
+  hidden: true  # Unconfirmed — hide until sponsorship is confirmed

@@ -4,6 +4,7 @@
     <p class="section-subtitle">Generously sponsored by</p>
     <div class="sponsor-grid">
       {% for sponsor in site.data.sponsors %}
+      {% unless sponsor.hidden %}
       <a href="{{ sponsor.url }}" class="sponsor-item" target="_blank" rel="noopener noreferrer" aria-label="{{ sponsor.name }}">
         {% if sponsor.logo != "" %}
         <img src="{{ '/assets/images/logos/' | append: sponsor.logo | relative_url }}"
@@ -18,6 +19,7 @@
         </div>
         {% endif %}
       </a>
+      {% endunless %}
       {% endfor %}
     </div>
   </div>
