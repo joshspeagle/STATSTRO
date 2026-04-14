@@ -1,7 +1,7 @@
-# Headline speakers (overviews)
+# Keynote speakers (overviews)
 - name: "TBD"
   affiliation: ""
-  role: headline
+  role: keynote
   session: sampling
   talk_title: "TBD"
   photo: ""
@@ -10,7 +10,7 @@
 
 - name: "TBD"
   affiliation: ""
-  role: headline
+  role: keynote
   session: uq
   talk_title: "TBD"
   photo: ""
@@ -19,7 +19,7 @@
 
 - name: "TBD"
   affiliation: ""
-  role: headline
+  role: keynote
   session: ml
   talk_title: "TBD"
   photo: ""
@@ -28,7 +28,7 @@
 
 - name: "TBD"
   affiliation: ""
-  role: headline
+  role: keynote
   session: sbi
   talk_title: "TBD"
   photo: ""
@@ -72,10 +72,10 @@
   bio: ""
   website: ""
 
-# Invited science speakers
+# Contributed science speakers
 - name: "TBD"
   affiliation: ""
-  role: invited
+  role: contributed
   session: sampling
   talk_title: "TBD"
   photo: ""
@@ -84,7 +84,7 @@
 
 - name: "TBD"
   affiliation: ""
-  role: invited
+  role: contributed
   session: uq
   talk_title: "TBD"
   photo: ""
@@ -93,7 +93,7 @@
 
 - name: "TBD"
   affiliation: ""
-  role: invited
+  role: contributed
   session: ml
   talk_title: "TBD"
   photo: ""
@@ -102,7 +102,7 @@
 
 - name: "TBD"
   affiliation: ""
-  role: invited
+  role: contributed
   session: sbi
   talk_title: "TBD"
   photo: ""

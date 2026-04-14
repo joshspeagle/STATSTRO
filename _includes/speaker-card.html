@@ -23,9 +23,9 @@
     <p class="speaker-affiliation">{{ include.speaker.affiliation }}</p>
     {% endif %}
     <span class="speaker-role speaker-role--{{ include.speaker.role }}">
-      {% if include.speaker.role == "headline" %}Headline Speaker
+      {% if include.speaker.role == "keynote" %}Keynote Speaker
       {% elsif include.speaker.role == "tutorial" %}Tutorial Leader
-      {% elsif include.speaker.role == "invited" %}Invited Speaker
+      {% elsif include.speaker.role == "contributed" %}Contributed Speaker
       {% elsif include.speaker.role == "lightning" %}Lightning Talk
       {% endif %}
     </span>

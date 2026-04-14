@@ -6,10 +6,10 @@
 # Morning Session: Machine Learning
 - time: "10:00 – 11:00"
   title: "TBD"
-  type: headline
+  type: keynote
   session: ml
   speaker: "TBD"
-  description: "Headline overview talk — 60 min"
+  description: "Keynote overview talk — 60 min"
 
 - time: "11:00 – 11:15"
   title: "Break"
@@ -37,10 +37,10 @@
 
 - time: "12:15 – 12:45"
   title: "TBD"
-  type: invited
+  type: contributed
   session: ml
   speaker: "TBD"
-  description: "Invited science talk — 30 min"
+  description: "Contributed science talk — 30 min"
 
 # Lunch
 - time: "12:45 – 14:00"
@@ -51,10 +51,10 @@
 # Afternoon Session: Simulation-Based Inference
 - time: "14:00 – 15:00"
   title: "TBD"
-  type: headline
+  type: keynote
   session: sbi
   speaker: "TBD"
-  description: "Headline overview talk — 60 min"
+  description: "Keynote overview talk — 60 min"
 
 - time: "15:00 – 15:15"
   title: "Break"
@@ -82,10 +82,10 @@
 
 - time: "16:15 – 16:45"
   title: "TBD"
-  type: invited
+  type: contributed
   session: sbi
   speaker: "TBD"
-  description: "Invited science talk — 30 min"
+  description: "Contributed science talk — 30 min"
 
 # Closing
 - time: "16:45 – 17:00"

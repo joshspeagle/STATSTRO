@@ -1,3 +1,4 @@
+{% assign session = nil %}
 {% if include.item.session %}
   {% assign session = site.data.sessions | where: "id", include.item.session | first %}
 {% endif %}
@@ -15,7 +16,13 @@
       <h4 class="schedule-item-title">{{ include.item.title }}</h4>
       {% endif %}
       {% if include.item.type != "break" and include.item.type != "ceremony" and include.item.type != "social" %}
-      <span class="schedule-type-badge" aria-label="Session type: {{ include.item.type }}">{{ include.item.type | capitalize }}</span>
+      {% case include.item.type %}
+        {% when "keynote" %}{% assign type_label = "Keynote Talk" %}
+        {% when "tutorial" %}{% assign type_label = "Tutorial" %}
+        {% when "contributed" %}{% assign type_label = "Contributed Talk" %}
+        {% else %}{% assign type_label = include.item.type | capitalize %}
+      {% endcase %}
+      <span class="schedule-type-badge" aria-label="Session type: {{ type_label }}">{{ type_label }}</span>
       {% endif %}
     </div>
     {% if include.item.speaker %}
