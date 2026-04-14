@@ -10,10 +10,10 @@
 # Morning Session: Sampling Techniques
 - time: "10:10 – 11:10"
   title: "TBD"
-  type: headline
+  type: keynote
   session: sampling
   speaker: "TBD"
-  description: "Headline overview talk — 60 min"
+  description: "Keynote overview talk — 60 min"
 
 - time: "11:10 – 11:25"
   title: "Break"
@@ -41,10 +41,10 @@
 
 - time: "12:25 – 12:55"
   title: "TBD"
-  type: invited
+  type: contributed
   session: sampling
   speaker: "TBD"
-  description: "Invited science talk — 30 min"
+  description: "Contributed science talk — 30 min"
 
 # Lunch
 - time: "12:55 – 14:15"
@@ -55,10 +55,10 @@
 # Afternoon Session: Uncertainty Quantification
 - time: "14:15 – 15:15"
   title: "TBD"
-  type: headline
+  type: keynote
   session: uq
   speaker: "TBD"
-  description: "Headline overview talk — 60 min"
+  description: "Keynote overview talk — 60 min"
 
 - time: "15:15 – 15:30"
   title: "Break"
@@ -86,10 +86,10 @@
 
 - time: "16:30 – 17:00"
   title: "TBD"
-  type: invited
+  type: contributed
   session: uq
   speaker: "TBD"
-  description: "Invited science talk — 30 min"
+  description: "Contributed science talk — 30 min"
 
 # Evening
 - time: "17:00 – 17:30"

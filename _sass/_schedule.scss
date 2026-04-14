@@ -52,9 +52,9 @@
   }
 
   // Type-specific left border
-  &--headline,
+  &--keynote,
   &--tutorial,
-  &--invited,
+  &--contributed,
   &--lightning {
     .schedule-details {
       border-left: 3px solid var(--session-color, $gold);

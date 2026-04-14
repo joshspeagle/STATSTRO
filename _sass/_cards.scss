@@ -90,7 +90,7 @@
   background: var(--color-badge-bg);
   color: var(--color-badge-text);
 
-  &--headline {
+  &--keynote {
     background: rgba($gold, 0.15);
     color: $gold-dark;
   }
@@ -100,7 +100,7 @@
     color: $teal-dark;
   }
 
-  &--invited {
+  &--contributed {
     background: rgba($coral, 0.12);
     color: $coral-dark;
   }
