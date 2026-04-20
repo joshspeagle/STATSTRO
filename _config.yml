@@ -14,7 +14,7 @@ conference:
   address: "700 University Avenue, 9th–10th floors"
   city: "Toronto, ON"
   registration_url: "https://forms.gle/rSA7spQf8iEGb3UP9"
-  registration_open: false  # Form exists but not yet live — flip to true when ready
+  registration_open: true  # Form exists but not yet live — flip to true when ready
 
 # Build settings
 markdown: kramdown
