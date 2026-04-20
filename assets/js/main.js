@@ -37,12 +37,14 @@
   });
 
   // --- Smooth scroll for anchor links ---
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
+  // Matches in-page fragments (#foo) and same-page links with a fragment (/#foo, /path/#foo)
+  document.querySelectorAll('a[href*="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
-      const targetId = link.getAttribute('href');
-      if (targetId === '#') return;
+      if (link.pathname && link.pathname !== window.location.pathname) return;
+      const hash = link.hash;
+      if (!hash || hash === '#') return;
 
-      const target = document.querySelector(targetId);
+      const target = document.querySelector(hash);
       if (target) {
         e.preventDefault();
         const navHeight = document.querySelector('.site-nav').offsetHeight;
