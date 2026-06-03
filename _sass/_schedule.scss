@@ -78,6 +78,13 @@
       border-left: 3px solid $gold;
     }
   }
+
+  &--poster {
+    .schedule-details {
+      padding-left: $spacing-lg;
+      border-left: 3px solid $teal;
+    }
+  }
 }
 
 .schedule-time {

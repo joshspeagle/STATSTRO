@@ -1,98 +1,99 @@
 # Keynote speakers (overviews)
-- name: "TBD"
-  affiliation: ""
+- name: "Radu Craiu"
+  affiliation: "University of Toronto"
   role: keynote
   session: sampling
   talk_title: "TBD"
-  photo: ""
+  photo: "radu-craiu.jpg"
   bio: ""
-  website: ""
+  website: "https://utstat.toronto.edu/craiu/"
 
-- name: "TBD"
-  affiliation: ""
+- name: "Mikael Kuusela"
+  affiliation: "Carnegie Mellon University"
   role: keynote
   session: uq
   talk_title: "TBD"
-  photo: ""
+  photo: "mikael-kuusela.jpg"
   bio: ""
-  website: ""
+  website: "https://www.stat.cmu.edu/~mkuusela/"
 
+- name: "Ricardo Baptista"
+  affiliation: "University of Toronto"
+  role: keynote
+  session: ml
+  talk_title: "TBD"
+  photo: "ricardo-baptista.jpg"
+  bio: ""
+  website: "https://www.ricardobaptista.com/"
+
+- name: "Justine Zeghal"
+  affiliation: "Université de Montréal"
+  role: keynote
+  session: sbi
+  talk_title: "TBD"
+  photo: "justine-zeghal.jpg"
+  bio: ""
+  website: "https://justinezgh.github.io/"
+
+# Tutorial leaders — hands-on coding tutorials
+- name: "Yichen Ji"
+  affiliation: "University of Toronto"
+  role: tutorial
+  session: sampling
+  talk_title: "TBD"
+  photo: "yichen-ji.jpg"
+  bio: ""
+  website: "https://user-jiyichen.github.io/"
+
+- name: "Biprateep Dey"
+  affiliation: "University of Toronto"
+  role: tutorial
+  session: uq
+  talk_title: "TBD"
+  photo: "biprateep-dey.jpg"
+  bio: ""
+  website: "https://biprateep.de/"
+
+# ML tutorial — pending confirmation (Kartheik Iyer, Columbia/CCA)
 - name: "TBD"
   affiliation: ""
-  role: keynote
+  role: tutorial
   session: ml
   talk_title: "TBD"
   photo: ""
   bio: ""
   website: ""
 
-- name: "TBD"
-  affiliation: ""
-  role: keynote
-  session: sbi
-  talk_title: "TBD"
-  photo: ""
-  bio: ""
-  website: ""
-
-# Tutorial leaders
-- name: "TBD"
-  affiliation: ""
-  role: tutorial
-  session: sampling
-  talk_title: "TBD"
-  photo: ""
-  bio: ""
-  website: ""
-
-- name: "TBD"
-  affiliation: ""
-  role: tutorial
-  session: uq
-  talk_title: "TBD"
-  photo: ""
-  bio: ""
-  website: ""
-
-- name: "TBD"
-  affiliation: ""
-  role: tutorial
-  session: ml
-  talk_title: "TBD"
-  photo: ""
-  bio: ""
-  website: ""
-
-- name: "TBD"
-  affiliation: ""
+- name: "Connor Stone"
+  affiliation: "University of Toronto"
   role: tutorial
   session: sbi
   talk_title: "TBD"
-  photo: ""
+  photo: "connor-stone.jpg"
   bio: ""
-  website: ""
+  website: "https://connorjstone.com/"
 
 # Contributed science speakers
-- name: "TBD"
-  affiliation: ""
+- name: "Peter Behroozi"
+  affiliation: "University of Arizona"
   role: contributed
   session: sampling
   talk_title: "TBD"
-  photo: ""
+  photo: "peter-behroozi.jpg"
   bio: ""
-  website: ""
+  website: "https://www.as.arizona.edu/people/faculty/peter-behroozi-0"
 
-- name: "TBD"
-  affiliation: ""
+- name: "Michael Evans"
+  affiliation: "University of Toronto"
   role: contributed
   session: uq
   talk_title: "TBD"
-  photo: ""
+  photo: "michael-evans.jpg"
   bio: ""
-  website: ""
+  website: "https://utstat.utoronto.ca/mikevans/"
 
-- name: "TBD"
-  affiliation: ""
+- name: "Ali SaraerToosi"
+  affiliation: "University of Toronto"
   role: contributed
   session: ml
   talk_title: "TBD"
@@ -100,11 +101,11 @@
   bio: ""
   website: ""
 
-- name: "TBD"
-  affiliation: ""
+- name: "Lawrence Faria"
+  affiliation: "Queen's University"
   role: contributed
   session: sbi
   talk_title: "TBD"
-  photo: ""
+  photo: "lawrence-faria.jpg"
   bio: ""
-  website: ""
+  website: "https://www.queensu.ca/physics/people-search/lawrence-faria"

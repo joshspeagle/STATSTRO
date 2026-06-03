@@ -80,6 +80,13 @@
   color: $gold;
 }
 
+.hero-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-lg;
+}
+
 .hero-registration-note {
   font-family: $font-body;
   font-size: $font-size-base;
@@ -89,6 +96,18 @@
   display: inline-block;
   padding: $spacing-sm $spacing-xl;
   border-radius: $border-radius;
+}
+
+.hero-registration-note--alert {
+  font-style: normal;
+  color: var(--color-text);
+  border-color: rgba($coral, 0.55);
+  background: rgba($coral, 0.12);
+  max-width: 32rem;
+
+  strong {
+    color: $gold;
+  }
 }
 
 @media (max-width: $bp-md) {

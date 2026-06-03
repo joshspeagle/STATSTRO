@@ -71,6 +71,14 @@
   font-size: $font-size-lg;
   margin-bottom: $spacing-xs;
   color: var(--color-heading);
+
+  a {
+    color: var(--color-heading);
+
+    &:hover {
+      color: $teal;
+    }
+  }
 }
 
 .speaker-affiliation {

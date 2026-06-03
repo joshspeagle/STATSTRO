@@ -10,8 +10,15 @@
       <span class="hero-separator">&middot;</span>
       <span class="hero-location">{{ site.conference.city }}</span>
     </div>
-    {% if site.conference.registration_open %}
-    <a href="{{ site.conference.registration_url }}" class="btn btn-primary">Register Now</a>
+    {% if site.conference.online_open %}
+    <div class="hero-cta">
+      <a href="{{ site.conference.registration_url }}" class="btn btn-primary btn-large" target="_blank" rel="noopener noreferrer">Register Now — Online Only</a>
+      <p class="hero-registration-note hero-registration-note--alert">
+        In-person registration is now <strong>full</strong>. Online-only registration is <strong>still open</strong>.
+      </p>
+    </div>
+    {% elsif site.conference.registration_open %}
+    <a href="{{ site.conference.registration_url }}" class="btn btn-primary btn-large" target="_blank" rel="noopener noreferrer">Register Now</a>
     {% else %}
     <p class="hero-registration-note">Registration opening soon</p>
     {% endif %}
