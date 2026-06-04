@@ -54,8 +54,7 @@
   // Type-specific left border
   &--keynote,
   &--tutorial,
-  &--contributed,
-  &--lightning {
+  &--contributed {
     .schedule-details {
       border-left: 3px solid var(--session-color, $gold);
       padding-left: $spacing-lg;
@@ -71,11 +70,13 @@
     }
   }
 
-  // Program / structural items (opening & closing remarks, poster session,
-  // dinner) share one neutral accent, distinct from the per-session colors.
+  // Program / structural items (opening & closing remarks, lightning talks,
+  // poster session, dinner) share one neutral accent, distinct from the
+  // per-session colors.
   &--ceremony,
   &--social,
-  &--poster {
+  &--poster,
+  &--lightning {
     .schedule-details {
       padding-left: $spacing-lg;
       border-left: 3px solid var(--color-program-border);
