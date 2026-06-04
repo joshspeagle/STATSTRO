@@ -8,7 +8,8 @@
   title: "TBD"
   type: keynote
   session: sampling
-  speaker: "TBD"
+  speaker: "Radu Craiu"
+  affiliation: "University of Toronto"
   description: "Keynote overview talk — 60 min"
 
 - time: "10:30 – 10:45"
@@ -19,14 +20,16 @@
   title: "TBD"
   type: tutorial
   session: sampling
-  speaker: "TBD"
+  speaker: "Yichen Ji"
+  affiliation: "University of Toronto"
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
 
 - time: "11:30 – 12:00"
   title: "TBD"
   type: contributed
   session: sampling
-  speaker: "TBD"
+  speaker: "Peter Behroozi"
+  affiliation: "University of Arizona"
   description: "Contributed science talk — 30 min"
 
 # Lightning Talks — combined preview of all of today's posters
@@ -52,7 +55,8 @@
   title: "TBD"
   type: keynote
   session: sbi
-  speaker: "TBD"
+  speaker: "Justine Zeghal"
+  affiliation: "Université de Montréal"
   description: "Keynote overview talk — 60 min"
 
 - time: "15:20 – 15:35"
@@ -63,14 +67,16 @@
   title: "TBD"
   type: tutorial
   session: sbi
-  speaker: "TBD"
+  speaker: "Connor Stone"
+  affiliation: "University of Toronto"
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
 
 - time: "16:20 – 16:50"
   title: "TBD"
   type: contributed
   session: sbi
-  speaker: "TBD"
+  speaker: "Lawrence Faria"
+  affiliation: "Queen's University"
   description: "Contributed science talk — 30 min"
 
 # Closing

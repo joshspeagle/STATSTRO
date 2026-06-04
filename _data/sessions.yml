@@ -1,6 +1,6 @@
 # Listed in chronological order: Day 1 (ML, UQ) then Day 2 (Sampling, SBI)
 - id: ml
-  name: "Machine Learning"
+  name: "Deep Learning"
   day: 1
   color: "#C45B3E"
   description: "Deep learning for scientific applications, including neural networks as emulators and surrogates, interpolation, extrapolation, and generalizability."

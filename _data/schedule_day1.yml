@@ -7,12 +7,13 @@
   title: "Opening Remarks"
   type: ceremony
 
-# Morning Session: Machine Learning
+# Morning Session: Deep Learning
 - time: "9:40 – 10:40"
   title: "TBD"
   type: keynote
   session: ml
-  speaker: "TBD"
+  speaker: "Ricardo Baptista"
+  affiliation: "University of Toronto"
   description: "Keynote overview talk — 60 min"
 
 - time: "10:40 – 10:55"
@@ -30,7 +31,8 @@
   title: "TBD"
   type: contributed
   session: ml
-  speaker: "TBD"
+  speaker: "Ali SaraerToosi"
+  affiliation: "University of Toronto"
   description: "Contributed science talk — 30 min"
 
 # Lightning Talks — combined preview of all of today's posters
@@ -56,7 +58,8 @@
   title: "TBD"
   type: keynote
   session: uq
-  speaker: "TBD"
+  speaker: "Mikael Kuusela"
+  affiliation: "Carnegie Mellon University"
   description: "Keynote overview talk — 60 min"
 
 - time: "15:30 – 15:45"
@@ -67,14 +70,16 @@
   title: "TBD"
   type: tutorial
   session: uq
-  speaker: "TBD"
+  speaker: "Biprateep Dey"
+  affiliation: "University of Toronto"
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
 
 - time: "16:30 – 17:00"
   title: "TBD"
   type: contributed
   session: uq
-  speaker: "TBD"
+  speaker: "Michael Evans"
+  affiliation: "University of Toronto"
   description: "Contributed science talk — 30 min"
 
 # Evening
