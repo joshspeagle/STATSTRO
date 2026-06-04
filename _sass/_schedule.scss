@@ -71,18 +71,14 @@
     }
   }
 
+  // Program / structural items (opening & closing remarks, poster session,
+  // dinner) share one neutral accent, distinct from the per-session colors.
   &--ceremony,
-  &--social {
-    .schedule-details {
-      padding-left: $spacing-lg;
-      border-left: 3px solid $gold;
-    }
-  }
-
+  &--social,
   &--poster {
     .schedule-details {
       padding-left: $spacing-lg;
-      border-left: 3px solid $teal;
+      border-left: 3px solid var(--color-program-border);
     }
   }
 }
