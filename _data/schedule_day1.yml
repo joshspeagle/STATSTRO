@@ -9,7 +9,7 @@
 
 # Morning Session: Deep Learning
 - time: "9:40 – 10:40"
-  title: "TBD"
+  title: "Successes and Challenges of Posterior Sampling with Score-Based Diffusion Models"
   type: keynote
   session: ml
   speaker: "Ricardo Baptista"
@@ -21,7 +21,7 @@
   type: break
 
 - time: "10:55 – 11:40"
-  title: "TBD"
+  title: "How Do You Know What Your Models Are Learning?"
   type: tutorial
   session: ml
   speaker: "Kartheik Iyer"
@@ -29,7 +29,7 @@
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab), delivered remotely"
 
 - time: "11:40 – 12:10"
-  title: "NeuralDMD: Interpretable Untrained Neural Network for Imaging from Sparse and Noisy Observations"
+  title: "NeuralDMD: Interpretable Neural Representation of Dynamics from Sparse and Noisy Measurements"
   type: contributed
   session: ml
   speaker: "Ali SaraerToosi"
@@ -56,7 +56,7 @@
 
 # Afternoon Session: Uncertainty Quantification
 - time: "14:30 – 15:30"
-  title: "TBD"
+  title: "Statistical Foundations of Uncertainty Quantification for Physicists in the Era of Machine Learning"
   type: keynote
   session: uq
   speaker: "Mikael Kuusela"
@@ -76,7 +76,7 @@
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
 
 - time: "16:30 – 17:00"
-  title: "Measuring Statistical Evidence Using Relative Belief"
+  title: "Confidence, Statistical Evidence and Relative Belief with Applications to a Problem in Particle Physics"
   type: contributed
   session: uq
   speaker: "Michael Evans"

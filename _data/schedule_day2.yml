@@ -5,7 +5,7 @@
 
 # Morning Session: Sampling Techniques
 - time: "9:30 – 10:30"
-  title: "TBD"
+  title: "The Universe of Sampling: Notes from a Statistical Odyssey"
   type: keynote
   session: sampling
   speaker: "Radu Craiu"
@@ -17,7 +17,7 @@
   type: break
 
 - time: "10:45 – 11:30"
-  title: "TBD"
+  title: "Bayesian Workflow Using PyMC"
   type: tutorial
   session: sampling
   speaker: "Yichen Ji"
@@ -25,7 +25,7 @@
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
 
 - time: "11:30 – 12:00"
-  title: "TBD"
+  title: "The Ray Tracing Sampler: Bayesian Sampling of Neural Networks for Everyone"
   type: contributed
   session: sampling
   speaker: "Peter Behroozi"
