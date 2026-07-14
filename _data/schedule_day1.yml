@@ -24,8 +24,9 @@
   title: "TBD"
   type: tutorial
   session: ml
-  speaker: "TBD"
-  description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
+  speaker: "Kartheik Iyer"
+  affiliation: "Columbia University"
+  description: "Hands-on coding tutorial — 45 min (Jupyter/Colab), delivered remotely"
 
 - time: "11:40 – 12:10"
   title: "TBD"

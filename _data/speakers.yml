@@ -54,15 +54,15 @@
   bio: ""
   website: "https://biprateep.de/"
 
-# ML tutorial — pending confirmation (Kartheik Iyer, Columbia/CCA)
-- name: "TBD"
-  affiliation: ""
+# ML tutorial — Kartheik Iyer (Columbia); attending remotely
+- name: "Kartheik Iyer"
+  affiliation: "Columbia University"
   role: tutorial
   session: ml
   talk_title: "TBD"
   photo: ""
   bio: ""
-  website: ""
+  website: "https://kartheikiyer.github.io/"
 
 - name: "Connor Stone"
   affiliation: "University of Toronto"
