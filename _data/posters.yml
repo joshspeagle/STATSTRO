@@ -9,11 +9,6 @@
 # ===== Day 1 — Thursday, July 16 =====
 
 # --- Deep Learning ---
-- name: "Samson Mercier"
-  affiliation: "MIT"
-  session: ml
-  title: "A GCM Emulator for Exoplanet Atmospheric Observables"
-
 - name: "David Bromley"
   affiliation: "University of Toronto"
   session: ml
@@ -40,10 +35,10 @@
   session: uq
   title: "Detecting Evidence of Hierarchical Structure Formation Around Dwarf Galaxies: Current and Future Observations"
 
-- name: "James Leung"  # inferred category (no session tag in tracker)
+- name: "Tanveer Karim"  # substituting for James Leung; UQ fits the model-comparison topic
   affiliation: "University of Toronto"
   session: uq
-  title: "Deriving Physical Inferences from Multi-Wavelength Light Curves of High-Energy Relativistic Transients"
+  title: "Is Dark Energy a Cosmological Constant? A Log Predictive Density Perspective"
 
 - name: "Alexandra Rochon"  # inferred category (no session tag in tracker)
   affiliation: "McMaster University"
