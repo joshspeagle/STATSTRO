@@ -14,9 +14,9 @@ conference:
   address: "700 University Avenue, 9th–10th floors"
   city: "Toronto, ON"
   registration_url: "https://docs.google.com/forms/d/e/1FAIpQLSfNEMJ4FsEKyg69eCveeY35LC4fgcI-nPlto1JEZhTIm__GoQ/viewform?usp=dialog"  # Online-only registration form
-  registration_open: true   # Online-only registration is open
+  registration_open: false  # Registration is now closed (form closed ahead of the event)
   in_person_open: false     # In-person registration has closed (at capacity)
-  online_open: true         # Online-only (remote/Zoom) registration remains open
+  online_open: false        # Online-only (remote/Zoom) registration is now closed
 
 # Build settings
 markdown: kramdown

@@ -1,0 +1,51 @@
+<section class="section posters" id="posters" aria-label="Posters and lightning talks">
+  <div class="container">
+    <h2 class="section-title">Posters &amp; Lightning Talks</h2>
+    <p class="section-subtitle">
+      Each poster is previewed by a 1-minute lightning talk just before lunch, followed by a
+      dedicated poster viewing session after lunch. Posters are split across the two days.
+    </p>
+
+    <div class="poster-days">
+      {% assign poster_days = "1,2" | split: "," %}
+      {% for d in poster_days %}
+      {% assign day_num = d | plus: 0 %}
+      {% assign day_posters = site.data.posters | where: "day", day_num %}
+      {% if day_posters.size > 0 %}
+      <div class="poster-day">
+        <h3 class="poster-day-title">
+          {% if day_num == 1 %}Day 1 — Thursday, July 16{% else %}Day 2 — Friday, July 17{% endif %}
+          <span class="poster-day-count">{{ day_posters.size }} poster{% if day_posters.size != 1 %}s{% endif %}</span>
+        </h3>
+        <div class="poster-grid">
+          {% for poster in day_posters %}
+          <div class="poster-card" role="listitem">
+            <span class="poster-icon" aria-hidden="true"><i class="fa-solid fa-map"></i></span>
+            <div class="poster-card-body">
+              <h4 class="poster-name">{{ poster.name }}</h4>
+              {% if poster.affiliation != "" %}
+              <p class="poster-affiliation">{{ poster.affiliation }}</p>
+              {% endif %}
+              {% if poster.title != "" %}
+              <p class="poster-title">"{{ poster.title }}"</p>
+              {% else %}
+              <p class="poster-title tbd">Title to be announced</p>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+
+    <p class="poster-note">
+      <strong>Presenter note:</strong> Poster boards are 6&nbsp;ft wide × 3&nbsp;ft tall, so posters
+      must be <strong>landscape</strong> — we recommend A1 landscape (84 × 59&nbsp;cm) or up to roughly
+      4&nbsp;ft × 2.5&nbsp;ft. A0 portrait will not fit. Posters are mounted with Velcro (provided at
+      setup); please don't bring pins or tape. Set up on your assigned day during registration
+      (9:00–9:30) or a break.
+    </p>
+  </div>
+</section>

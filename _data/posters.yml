@@ -1,0 +1,81 @@
+# Poster presenters — each paired with a 1-minute lightning talk on their assigned day.
+# Posters are split across the two days because ~8 poster boards are available per day.
+# Day assignment is provisional (currently an alphabetical split); change `day` to rebalance.
+# `title` will be filled in once presenters confirm their poster titles.
+
+# --- Day 1 — Thursday, July 16 ---
+- name: "Mohan Agrawal"
+  affiliation: "McGill University"
+  day: 1
+  title: ""
+
+- name: "David Bromley"
+  affiliation: "University of Toronto"
+  day: 1
+  title: ""
+
+- name: "Jennifer Y. H. Chan"
+  affiliation: "Oberlin College"
+  day: 1
+  title: ""
+
+- name: "Andrea Crespi"
+  affiliation: "University of Waterloo"
+  day: 1
+  title: ""
+
+- name: "Vincent Hénault-Brunet"
+  affiliation: "Saint Mary's University"
+  day: 1
+  title: ""
+
+- name: "Nolan Koblischke"
+  affiliation: "University of Toronto"
+  day: 1
+  title: ""
+
+- name: "Isabelle Laing"
+  affiliation: "University of Toronto"
+  day: 1
+  title: ""
+
+- name: "James Leung"
+  affiliation: "University of Toronto"
+  day: 1
+  title: ""
+
+# --- Day 2 — Friday, July 17 ---
+- name: "Samson Mercier"
+  affiliation: "MIT"
+  day: 2
+  title: ""
+
+- name: "Nasser Mohammed"
+  affiliation: "University of Toronto"
+  day: 2
+  title: ""
+
+- name: "Benjamin Naeve Velguth"
+  affiliation: "Dartmouth College"
+  day: 2
+  title: ""
+
+- name: "Alexandros Pratsos"
+  affiliation: "University of Toronto"
+  day: 2
+  title: ""
+
+- name: "Alexandra Rochon"
+  affiliation: "McMaster University"
+  day: 2
+  title: ""
+
+- name: "Bennett Neil Skinner"
+  affiliation: "McMaster University"
+  day: 2
+  title: ""
+
+- name: "Callista Sullivan"
+  affiliation: "Queen's University"
+  day: 2
+  title: ""
