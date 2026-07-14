@@ -11,10 +11,10 @@
   align-items: baseline;
   flex-wrap: wrap;
   gap: $spacing-md;
-  font-size: $font-size-xl;
+  font-size: $font-size-2xl;
   margin-bottom: $spacing-xl;
-  padding-left: $spacing-lg;
-  border-left: 4px solid $teal;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid var(--color-border-accent);
 }
 
 .poster-day-count {
@@ -23,23 +23,39 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: $teal;
+  color: var(--color-text-muted);
+}
+
+.poster-session-group {
+  margin-bottom: $spacing-xl;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.poster-session-name {
+  font-size: $font-size-lg;
+  margin-bottom: $spacing-lg;
+  padding-left: $spacing-md;
+  border-left: 4px solid var(--session-color, $gold);
+  color: var(--color-heading);
 }
 
 .poster-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: $spacing-lg;
 }
 
 .poster-card {
+  position: relative;
   display: flex;
-  gap: $spacing-md;
   padding: $spacing-lg;
+  padding-left: $spacing-xl;
   background: var(--color-bg-surface);
   border-radius: $border-radius;
   box-shadow: var(--color-shadow-sm);
-  border-left: 3px solid $teal;
   transition: all $transition-base;
 
   &:hover {
@@ -48,11 +64,15 @@
   }
 }
 
-.poster-icon {
-  flex-shrink: 0;
-  color: $teal;
-  font-size: 1.1rem;
-  line-height: 1.4;
+// Session-coloured accent bar down the left edge of each card.
+.poster-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: $border-radius 0 0 $border-radius;
+  background: var(--session-color, $gold);
 }
 
 .poster-card-body {
@@ -88,7 +108,6 @@
   font-size: $font-size-sm;
   color: var(--color-text-muted);
   line-height: 1.6;
-  margin-bottom: 0;
 
   strong {
     color: var(--color-heading);

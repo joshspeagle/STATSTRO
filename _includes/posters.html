@@ -3,38 +3,55 @@
     <h2 class="section-title">Posters &amp; Lightning Talks</h2>
     <p class="section-subtitle">
       Each poster is previewed by a 1-minute lightning talk just before lunch, followed by a
-      dedicated poster viewing session after lunch. Posters are split across the two days.
+      dedicated poster viewing session after lunch. Posters are grouped by thematic session and
+      split across the two days.
     </p>
 
     <div class="poster-days">
-      {% assign poster_days = "1,2" | split: "," %}
-      {% for d in poster_days %}
+      {% assign days = "1,2" | split: "," %}
+      {% for d in days %}
       {% assign day_num = d | plus: 0 %}
-      {% assign day_posters = site.data.posters | where: "day", day_num %}
-      {% if day_posters.size > 0 %}
+      {% assign day_sessions = site.data.sessions | where: "day", day_num %}
+
+      {% assign day_count = 0 %}
+      {% for s in day_sessions %}
+        {% assign s_posters = site.data.posters | where: "session", s.id %}
+        {% assign day_count = day_count | plus: s_posters.size %}
+      {% endfor %}
+
+      {% if day_count > 0 %}
       <div class="poster-day">
         <h3 class="poster-day-title">
           {% if day_num == 1 %}Day 1 — Thursday, July 16{% else %}Day 2 — Friday, July 17{% endif %}
-          <span class="poster-day-count">{{ day_posters.size }} poster{% if day_posters.size != 1 %}s{% endif %}</span>
+          <span class="poster-day-count">{{ day_count }} poster{% if day_count != 1 %}s{% endif %}</span>
         </h3>
-        <div class="poster-grid">
-          {% for poster in day_posters %}
-          <div class="poster-card" role="listitem">
-            <span class="poster-icon" aria-hidden="true"><i class="fa-solid fa-map"></i></span>
-            <div class="poster-card-body">
-              <h4 class="poster-name">{{ poster.name }}</h4>
-              {% if poster.affiliation != "" %}
-              <p class="poster-affiliation">{{ poster.affiliation }}</p>
-              {% endif %}
-              {% if poster.title != "" %}
-              <p class="poster-title">"{{ poster.title }}"</p>
-              {% else %}
-              <p class="poster-title tbd">Title to be announced</p>
-              {% endif %}
+
+        {% for s in day_sessions %}
+        {% assign session_posters = site.data.posters | where: "session", s.id %}
+        {% if session_posters.size > 0 %}
+        <div class="poster-session-group" style="--session-color: {{ s.color }}">
+          <h4 class="poster-session-name">{{ s.name }}</h4>
+          <div class="poster-grid" role="list">
+            {% for poster in session_posters %}
+            <div class="poster-card" style="--session-color: {{ s.color }}" role="listitem">
+              <span class="poster-accent" aria-hidden="true"></span>
+              <div class="poster-card-body">
+                <h5 class="poster-name">{{ poster.name }}</h5>
+                {% if poster.affiliation != "" %}
+                <p class="poster-affiliation">{{ poster.affiliation }}</p>
+                {% endif %}
+                {% if poster.title != "" %}
+                <p class="poster-title">“{{ poster.title }}”</p>
+                {% else %}
+                <p class="poster-title tbd">Title to be announced</p>
+                {% endif %}
+              </div>
             </div>
+            {% endfor %}
           </div>
-          {% endfor %}
         </div>
+        {% endif %}
+        {% endfor %}
       </div>
       {% endif %}
       {% endfor %}
