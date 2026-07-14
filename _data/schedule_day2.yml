@@ -64,7 +64,7 @@
   type: break
 
 - time: "15:35 – 16:20"
-  title: "TBD"
+  title: "Building Forward Models for Astronomical Applications in the caskade Ecosystem"
   type: tutorial
   session: sbi
   speaker: "Connor Stone"
@@ -72,7 +72,7 @@
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
 
 - time: "16:20 – 16:50"
-  title: "TBD"
+  title: "Simulation-Based Inference for HI Kinematics in Ultra-Diffuse Galaxies"
   type: contributed
   session: sbi
   speaker: "Lawrence Faria"

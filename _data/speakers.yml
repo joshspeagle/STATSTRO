@@ -68,7 +68,7 @@
   affiliation: "University of Toronto"
   role: tutorial
   session: sbi
-  talk_title: "TBD"
+  talk_title: "Building Forward Models for Astronomical Applications in the caskade Ecosystem"
   photo: "connor-stone.jpg"
   bio: ""
   website: "https://connorjstone.com/"
@@ -87,7 +87,7 @@
   affiliation: "University of Toronto"
   role: contributed
   session: uq
-  talk_title: "TBD"
+  talk_title: "Measuring Statistical Evidence Using Relative Belief"
   photo: "michael-evans.jpg"
   bio: ""
   website: "https://utstat.utoronto.ca/mikevans/"
@@ -96,7 +96,7 @@
   affiliation: "University of Toronto"
   role: contributed
   session: ml
-  talk_title: "TBD"
+  talk_title: "NeuralDMD: Interpretable Untrained Neural Network for Imaging from Sparse and Noisy Observations"
   photo: "ali-saraertoosi.jpg"
   bio: ""
   website: "https://ali-saraertoosi.vercel.app/"
@@ -105,7 +105,7 @@
   affiliation: "Queen's University"
   role: contributed
   session: sbi
-  talk_title: "TBD"
+  talk_title: "Simulation-Based Inference for HI Kinematics in Ultra-Diffuse Galaxies"
   photo: "lawrence-faria.jpg"
   bio: ""
   website: "https://www.queensu.ca/physics/people-search/lawrence-faria"

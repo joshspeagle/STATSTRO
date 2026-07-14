@@ -29,7 +29,7 @@
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab), delivered remotely"
 
 - time: "11:40 – 12:10"
-  title: "TBD"
+  title: "NeuralDMD: Interpretable Untrained Neural Network for Imaging from Sparse and Noisy Observations"
   type: contributed
   session: ml
   speaker: "Ali SaraerToosi"
@@ -76,7 +76,7 @@
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
 
 - time: "16:30 – 17:00"
-  title: "TBD"
+  title: "Measuring Statistical Evidence Using Relative Belief"
   type: contributed
   session: uq
   speaker: "Michael Evans"
