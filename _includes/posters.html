@@ -37,10 +37,10 @@
               <span class="poster-accent" aria-hidden="true"></span>
               <div class="poster-card-body">
                 <h5 class="poster-name">{{ poster.name }}</h5>
-                {% if poster.affiliation != "" %}
+                {% if poster.affiliation != blank %}
                 <p class="poster-affiliation">{{ poster.affiliation }}</p>
                 {% endif %}
-                {% if poster.title != "" %}
+                {% if poster.title != blank %}
                 <p class="poster-title">“{{ poster.title }}”</p>
                 {% else %}
                 <p class="poster-title tbd">Title to be announced</p>
