@@ -1,0 +1,68 @@
+<section class="section posters" id="posters" aria-label="Posters and lightning talks">
+  <div class="container">
+    <h2 class="section-title">Posters &amp; Lightning Talks</h2>
+    <p class="section-subtitle">
+      Each poster is previewed by a 1-minute lightning talk just before lunch, followed by a
+      dedicated poster viewing session after lunch. Posters are grouped by thematic session and
+      split across the two days.
+    </p>
+
+    <div class="poster-days">
+      {% assign days = "1,2" | split: "," %}
+      {% for d in days %}
+      {% assign day_num = d | plus: 0 %}
+      {% assign day_sessions = site.data.sessions | where: "day", day_num %}
+
+      {% assign day_count = 0 %}
+      {% for s in day_sessions %}
+        {% assign s_posters = site.data.posters | where: "session", s.id %}
+        {% assign day_count = day_count | plus: s_posters.size %}
+      {% endfor %}
+
+      {% if day_count > 0 %}
+      <div class="poster-day">
+        <h3 class="poster-day-title">
+          {% if day_num == 1 %}Day 1 — Thursday, July 16{% else %}Day 2 — Friday, July 17{% endif %}
+          <span class="poster-day-count">{{ day_count }} poster{% if day_count != 1 %}s{% endif %}</span>
+        </h3>
+
+        {% for s in day_sessions %}
+        {% assign session_posters = site.data.posters | where: "session", s.id %}
+        {% if session_posters.size > 0 %}
+        <div class="poster-session-group" style="--session-color: {{ s.color }}">
+          <h4 class="poster-session-name">{{ s.name }}</h4>
+          <div class="poster-grid" role="list">
+            {% for poster in session_posters %}
+            <div class="poster-card" style="--session-color: {{ s.color }}" role="listitem">
+              <span class="poster-accent" aria-hidden="true"></span>
+              <div class="poster-card-body">
+                <h5 class="poster-name">{{ poster.name }}</h5>
+                {% if poster.affiliation != blank %}
+                <p class="poster-affiliation">{{ poster.affiliation }}</p>
+                {% endif %}
+                {% if poster.title != blank %}
+                <p class="poster-title">“{{ poster.title }}”</p>
+                {% else %}
+                <p class="poster-title tbd">Title to be announced</p>
+                {% endif %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+
+    <p class="poster-note">
+      <strong>Presenter note:</strong> Poster boards are 6&nbsp;ft wide × 3&nbsp;ft tall, so posters
+      must be <strong>landscape</strong> — we recommend A1 landscape (84 × 59&nbsp;cm) or up to roughly
+      4&nbsp;ft × 2.5&nbsp;ft. A0 portrait will not fit. Posters are mounted with Velcro (provided at
+      setup); please don't bring pins or tape. Set up on your assigned day during registration
+      (9:00–9:30) or a break.
+    </p>
+  </div>
+</section>

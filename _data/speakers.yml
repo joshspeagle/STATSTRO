@@ -3,7 +3,7 @@
   affiliation: "University of Toronto"
   role: keynote
   session: sampling
-  talk_title: "TBD"
+  talk_title: "The Universe of Sampling: Notes from a Statistical Odyssey"
   photo: "radu-craiu.jpg"
   bio: ""
   website: "https://utstat.toronto.edu/craiu/"
@@ -12,7 +12,7 @@
   affiliation: "Carnegie Mellon University"
   role: keynote
   session: uq
-  talk_title: "TBD"
+  talk_title: "Statistical Foundations of Uncertainty Quantification for Physicists in the Era of Machine Learning"
   photo: "mikael-kuusela.jpg"
   bio: ""
   website: "https://www.stat.cmu.edu/~mkuusela/"
@@ -21,7 +21,7 @@
   affiliation: "University of Toronto"
   role: keynote
   session: ml
-  talk_title: "TBD"
+  talk_title: "Successes and Challenges of Posterior Sampling with Score-Based Diffusion Models"
   photo: "ricardo-baptista.jpg"
   bio: ""
   website: "https://www.ricardobaptista.com/"
@@ -30,7 +30,7 @@
   affiliation: "Université de Montréal"
   role: keynote
   session: sbi
-  talk_title: "TBD"
+  talk_title: "From Simulations to Posteriors: A Tour of Simulation-Based Inference"
   photo: "justine-zeghal.jpg"
   bio: ""
   website: "https://justinezgh.github.io/"
@@ -40,7 +40,7 @@
   affiliation: "University of Toronto"
   role: tutorial
   session: sampling
-  talk_title: "TBD"
+  talk_title: "Bayesian Workflow Using PyMC"
   photo: "yichen-ji.jpg"
   bio: ""
   website: "https://user-jiyichen.github.io/"
@@ -49,26 +49,26 @@
   affiliation: "University of Toronto"
   role: tutorial
   session: uq
-  talk_title: "TBD"
+  talk_title: "A Practitioner's Guide to Uncertainty Quantification"
   photo: "biprateep-dey.jpg"
   bio: ""
   website: "https://biprateep.de/"
 
-# ML tutorial — pending confirmation (Kartheik Iyer, Columbia/CCA)
-- name: "TBD"
-  affiliation: ""
+# ML tutorial — Kartheik Iyer (Columbia); attending remotely
+- name: "Kartheik Iyer"
+  affiliation: "Columbia University"
   role: tutorial
   session: ml
-  talk_title: "TBD"
-  photo: ""
+  talk_title: "How Do You Know What Your Models Are Learning?"
+  photo: "kartheik-iyer.jpg"
   bio: ""
-  website: ""
+  website: "https://kartheikiyer.github.io/"
 
 - name: "Connor Stone"
   affiliation: "University of Toronto"
   role: tutorial
   session: sbi
-  talk_title: "TBD"
+  talk_title: "Building Forward Models for Astronomical Applications in the caskade Ecosystem"
   photo: "connor-stone.jpg"
   bio: ""
   website: "https://connorjstone.com/"
@@ -78,7 +78,7 @@
   affiliation: "University of Arizona"
   role: contributed
   session: sampling
-  talk_title: "TBD"
+  talk_title: "The Ray Tracing Sampler: Bayesian Sampling of Neural Networks for Everyone"
   photo: "peter-behroozi.jpg"
   bio: ""
   website: "https://www.as.arizona.edu/people/faculty/peter-behroozi-0"
@@ -87,7 +87,7 @@
   affiliation: "University of Toronto"
   role: contributed
   session: uq
-  talk_title: "TBD"
+  talk_title: "Confidence, Statistical Evidence and Relative Belief with Applications to a Problem in Particle Physics"
   photo: "michael-evans.jpg"
   bio: ""
   website: "https://utstat.utoronto.ca/mikevans/"
@@ -96,7 +96,7 @@
   affiliation: "University of Toronto"
   role: contributed
   session: ml
-  talk_title: "TBD"
+  talk_title: "NeuralDMD: Interpretable Neural Representation of Dynamics from Sparse and Noisy Measurements"
   photo: "ali-saraertoosi.jpg"
   bio: ""
   website: "https://ali-saraertoosi.vercel.app/"
@@ -105,7 +105,7 @@
   affiliation: "Queen's University"
   role: contributed
   session: sbi
-  talk_title: "TBD"
+  talk_title: "Simulation-Based Inference for HI Kinematics in Ultra-Diffuse Galaxies"
   photo: "lawrence-faria.jpg"
   bio: ""
   website: "https://www.queensu.ca/physics/people-search/lawrence-faria"

@@ -1,0 +1,85 @@
+# Poster presenters — each paired with a 1-minute lightning talk on their assigned day.
+# Posters are grouped by thematic session; the session determines the day and colour:
+#   Day 1 — ml (Deep Learning), uq (Uncertainty Quantification)
+#   Day 2 — sampling (Sampling Techniques), sbi (Simulation-Based Inference)
+# `session` is the category tag from the poster tracker (first-listed where several apply).
+# Entries marked "inferred" had no session tag in the tracker; category was inferred from the
+# abstract to balance the ~8 boards available per day — adjust `session` to recategorise.
+
+# ===== Day 1 — Thursday, July 16 =====
+
+# --- Deep Learning ---
+- name: "David Bromley"
+  affiliation: "University of Toronto"
+  session: ml
+  title: "Spacetime Tomography via Learned Geodesics and Differentiable Rendering"
+
+- name: "Nolan Koblischke"
+  affiliation: "University of Toronto"
+  session: ml
+  title: "Vision-Language Models for Astrophysics"
+
+- name: "Isabelle Laing"
+  affiliation: "University of Toronto"
+  session: ml
+  title: "DOROTHY: A Stellar Catalogue for 13 Million Milky Way Stars from a Machine-Learning Pipeline"
+
+# --- Uncertainty Quantification ---
+- name: "Alexandros Pratsos"
+  affiliation: "University of Toronto"
+  session: uq
+  title: "Characterizing Stellar Streams with Error-Aware Machine Learning"
+
+- name: "Benjamin Naeve Velguth"  # inferred category (no session tag in tracker)
+  affiliation: "Dartmouth College"
+  session: uq
+  title: "Detecting Evidence of Hierarchical Structure Formation Around Dwarf Galaxies: Current and Future Observations"
+
+- name: "Tanveer Karim"  # substituting for James Leung; UQ fits the model-comparison topic
+  affiliation: "University of Toronto"
+  session: uq
+  title: "Is Dark Energy a Cosmological Constant? A Log Predictive Density Perspective"
+
+- name: "Alexandra Rochon"  # inferred category (no session tag in tracker)
+  affiliation: "McMaster University"
+  session: uq
+  title: "Understanding the Impact of Cold Gas Giants on the Formation of Super-Earths and Sub-Neptunes with Astrometry"
+
+# ===== Day 2 — Friday, July 17 =====
+
+# --- Sampling Techniques ---
+- name: "Andrea Crespi"
+  affiliation: "University of Waterloo"
+  session: sampling
+  title: "Efficient Gradient-Based Sampling for Cosmological Field-Level Inference"
+
+- name: "Mohan Agrawal"
+  affiliation: "McGill University"
+  session: sampling
+  title: "How to Generate Exact 1/fᵅ-Type Noise over an Arbitrary Number of Frequency Decades Without Running Out of Memory"
+
+- name: "Bennett Neil Skinner"
+  affiliation: "McMaster University"
+  session: sampling
+  title: "Inferring Planet Compositions Using Statistical Methods"
+
+- name: "Vincent Hénault-Brunet"
+  affiliation: "Saint Mary's University"
+  session: sampling
+  title: "Orbit-Based Constraints on the Mass and Position of an IMBH in Omega Centauri from Fast-Moving Stars"
+
+- name: "Nasser Mohammed"
+  affiliation: "University of Toronto"
+  session: sampling
+  title: "Bayesian Mixture Modelling to Characterize Stellar Streams"
+
+# --- Simulation-Based Inference ---
+- name: "Jennifer Y. H. Chan"
+  affiliation: "Oberlin College"
+  session: sbi
+  title: "Directional Multiscale Tools for Inference on the Sphere: From Wavelets to Curvelets with S2LET"
+
+- name: "Callista Sullivan"
+  affiliation: "Queen's University"
+  session: sbi
+  title: "Can Simulation-Based Inference Reshape the Search for Structured Protostellar Disks?"

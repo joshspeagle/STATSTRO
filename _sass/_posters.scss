@@ -1,0 +1,115 @@
+// Posters & Lightning Talks Section
+
+.poster-days {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3xl;
+}
+
+.poster-day-title {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+  font-size: $font-size-2xl;
+  margin-bottom: $spacing-xl;
+  padding-bottom: $spacing-sm;
+  border-bottom: 1px solid var(--color-border-accent);
+}
+
+.poster-day-count {
+  font-family: $font-body;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+}
+
+.poster-session-group {
+  margin-bottom: $spacing-xl;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.poster-session-name {
+  font-size: $font-size-lg;
+  margin-bottom: $spacing-lg;
+  padding-left: $spacing-md;
+  border-left: 4px solid var(--session-color, $gold);
+  color: var(--color-heading);
+}
+
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-lg;
+}
+
+.poster-card {
+  position: relative;
+  display: flex;
+  padding: $spacing-lg;
+  padding-left: $spacing-xl;
+  background: var(--color-bg-surface);
+  border-radius: $border-radius;
+  box-shadow: var(--color-shadow-sm);
+  transition: all $transition-base;
+
+  &:hover {
+    box-shadow: var(--color-shadow-md);
+    transform: translateY(-3px);
+  }
+}
+
+// Session-coloured accent bar down the left edge of each card.
+.poster-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: $border-radius 0 0 $border-radius;
+  background: var(--session-color, $gold);
+}
+
+.poster-card-body {
+  min-width: 0;
+}
+
+.poster-name {
+  font-size: $font-size-base;
+  margin-bottom: $spacing-xs;
+  color: var(--color-heading);
+}
+
+.poster-affiliation {
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+  margin-bottom: $spacing-xs;
+}
+
+.poster-title {
+  font-size: $font-size-sm;
+  font-style: italic;
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+.poster-note {
+  max-width: 800px;
+  margin: $spacing-3xl auto 0;
+  padding: $spacing-lg $spacing-xl;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-accent);
+  border-radius: $border-radius;
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+
+  strong {
+    color: var(--color-heading);
+  }
+}

@@ -9,7 +9,7 @@
 
 # Morning Session: Deep Learning
 - time: "9:40 – 10:40"
-  title: "TBD"
+  title: "Successes and Challenges of Posterior Sampling with Score-Based Diffusion Models"
   type: keynote
   session: ml
   speaker: "Ricardo Baptista"
@@ -21,14 +21,15 @@
   type: break
 
 - time: "10:55 – 11:40"
-  title: "TBD"
+  title: "How Do You Know What Your Models Are Learning?"
   type: tutorial
   session: ml
-  speaker: "TBD"
-  description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
+  speaker: "Kartheik Iyer"
+  affiliation: "Columbia University"
+  description: "Hands-on coding tutorial — 45 min (Jupyter/Colab), delivered remotely"
 
 - time: "11:40 – 12:10"
-  title: "TBD"
+  title: "NeuralDMD: Interpretable Neural Representation of Dynamics from Sparse and Noisy Measurements"
   type: contributed
   session: ml
   speaker: "Ali SaraerToosi"
@@ -39,7 +40,7 @@
 - time: "12:10 – 12:25"
   title: "Lightning Talks"
   type: lightning
-  description: "10 × 1-minute lightning talks (5 min changeover) — a one-minute preview of every poster on display today"
+  description: "7 × 1-minute lightning talks (5 min changeover) — a one-minute preview of every poster on display today"
 
 # Lunch
 - time: "12:25 – 13:30"
@@ -55,7 +56,7 @@
 
 # Afternoon Session: Uncertainty Quantification
 - time: "14:30 – 15:30"
-  title: "TBD"
+  title: "Statistical Foundations of Uncertainty Quantification for Physicists in the Era of Machine Learning"
   type: keynote
   session: uq
   speaker: "Mikael Kuusela"
@@ -67,7 +68,7 @@
   type: break
 
 - time: "15:45 – 16:30"
-  title: "TBD"
+  title: "A Practitioner's Guide to Uncertainty Quantification"
   type: tutorial
   session: uq
   speaker: "Biprateep Dey"
@@ -75,7 +76,7 @@
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
 
 - time: "16:30 – 17:00"
-  title: "TBD"
+  title: "Confidence, Statistical Evidence and Relative Belief with Applications to a Problem in Particle Physics"
   type: contributed
   session: uq
   speaker: "Michael Evans"
@@ -83,7 +84,7 @@
   description: "Contributed science talk — 30 min"
 
 # Evening
-- time: "18:00"
+- time: "18:30"
   title: "Conference Dinner"
   type: social
-  description: "Conference dinner — venue TBD. Space is limited; sign-up details provided at registration."
+  description: "Conference dinner at Rikki Tikki (71 Jarvis St). Seats were allocated by lottery through the dinner sign-up form; confirmed guests received details by email."

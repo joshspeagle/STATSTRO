@@ -5,7 +5,7 @@
 
 # Morning Session: Sampling Techniques
 - time: "9:30 – 10:30"
-  title: "TBD"
+  title: "The Universe of Sampling: Notes from a Statistical Odyssey"
   type: keynote
   session: sampling
   speaker: "Radu Craiu"
@@ -17,7 +17,7 @@
   type: break
 
 - time: "10:45 – 11:30"
-  title: "TBD"
+  title: "Bayesian Workflow Using PyMC"
   type: tutorial
   session: sampling
   speaker: "Yichen Ji"
@@ -25,7 +25,7 @@
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
 
 - time: "11:30 – 12:00"
-  title: "TBD"
+  title: "The Ray Tracing Sampler: Bayesian Sampling of Neural Networks for Everyone"
   type: contributed
   session: sampling
   speaker: "Peter Behroozi"
@@ -36,7 +36,7 @@
 - time: "12:00 – 12:15"
   title: "Lightning Talks"
   type: lightning
-  description: "10 × 1-minute lightning talks (5 min changeover) — a one-minute preview of every poster on display today"
+  description: "7 × 1-minute lightning talks (5 min changeover) — a one-minute preview of every poster on display today"
 
 # Lunch
 - time: "12:15 – 13:20"
@@ -52,7 +52,7 @@
 
 # Afternoon Session: Simulation-Based Inference
 - time: "14:20 – 15:20"
-  title: "TBD"
+  title: "From Simulations to Posteriors: A Tour of Simulation-Based Inference"
   type: keynote
   session: sbi
   speaker: "Justine Zeghal"
@@ -64,7 +64,7 @@
   type: break
 
 - time: "15:35 – 16:20"
-  title: "TBD"
+  title: "Building Forward Models for Astronomical Applications in the caskade Ecosystem"
   type: tutorial
   session: sbi
   speaker: "Connor Stone"
@@ -72,7 +72,7 @@
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
 
 - time: "16:20 – 16:50"
-  title: "TBD"
+  title: "Simulation-Based Inference for HI Kinematics in Ultra-Diffuse Galaxies"
   type: contributed
   session: sbi
   speaker: "Lawrence Faria"
