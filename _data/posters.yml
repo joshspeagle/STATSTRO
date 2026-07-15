@@ -45,7 +45,7 @@
   session: uq
   title: "Understanding the Impact of Cold Gas Giants on the Formation of Super-Earths and Sub-Neptunes with Astrometry"
 
-- name: "Megan Oxland"  # off the waitlist; inferred category (galaxy-evolution science, no method tag)
+- name: "Megan Oxland"  # off the waitlist; session inferred as uq (no session tag in tracker; galaxy-evolution science)
   affiliation: "McMaster University"
   session: uq
   title: "Tracing Satellite Galaxy Evolution Across Cosmic Time"
