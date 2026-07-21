@@ -17,6 +17,7 @@ conference:
   registration_open: false  # Registration is now closed (form closed ahead of the event)
   in_person_open: false     # In-person registration has closed (at capacity)
   online_open: false        # Online-only (remote/Zoom) registration is now closed
+  concluded: true           # The workshop has taken place — the site is now an archive
 
 # Build settings
 markdown: kramdown

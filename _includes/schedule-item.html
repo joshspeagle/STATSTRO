@@ -37,5 +37,12 @@
     {% if include.item.description %}
     <p class="schedule-description">{{ include.item.description }}</p>
     {% endif %}
+    {% if include.item.tutorial_url %}
+    <p class="schedule-materials">
+      <a href="{{ include.item.tutorial_url }}" target="_blank" rel="noopener noreferrer">
+        Tutorial materials <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+      </a>
+    </p>
+    {% endif %}
   </div>
 </div>

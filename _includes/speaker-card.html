@@ -38,5 +38,12 @@
     {% if include.speaker.talk_title != "TBD" and include.speaker.talk_title != "" %}
     <p class="speaker-talk-title">"{{ include.speaker.talk_title }}"</p>
     {% endif %}
+    {% if include.speaker.tutorial_url %}
+    <p class="speaker-materials">
+      <a href="{{ include.speaker.tutorial_url }}" target="_blank" rel="noopener noreferrer">
+        Tutorial materials <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+      </a>
+    </p>
+    {% endif %}
   </div>
 </div>

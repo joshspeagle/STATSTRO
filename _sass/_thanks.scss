@@ -1,0 +1,54 @@
+// Thank You Section (post-event recap + group photo)
+
+.thanks-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.thanks-lead {
+  font-size: $font-size-lg;
+  color: var(--color-text);
+  margin-bottom: $spacing-lg;
+}
+
+.thanks-body {
+  font-size: $font-size-base;
+  color: var(--color-text-muted);
+  margin-bottom: $spacing-2xl;
+}
+
+.thanks-photo {
+  margin: 0 0 $spacing-xl;
+
+  // Only the image-wrapping anchor (direct child) gets the framed treatment —
+  // not the "view full size" link inside the figcaption.
+  > a {
+    display: block;
+    border-radius: $border-radius;
+    overflow: hidden;
+    box-shadow: var(--color-shadow-md);
+    border: 1px solid var(--color-border-accent);
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  figcaption {
+    margin-top: $spacing-md;
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+}
+
+.thanks-signoff {
+  font-family: $font-heading;
+  font-style: italic;
+  font-size: $font-size-lg;
+  color: var(--color-heading);
+  margin-bottom: 0;
+}

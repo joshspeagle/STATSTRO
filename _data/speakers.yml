@@ -44,6 +44,7 @@
   photo: "yichen-ji.jpg"
   bio: ""
   website: "https://user-jiyichen.github.io/"
+  tutorial_url: "https://github.com/user-jiyichen/user-jiyichen.github.io/blob/master/files/Bayesian_workflow_tutorial_STATSTRO.ipynb"
 
 - name: "Biprateep Dey"
   affiliation: "University of Toronto"
@@ -53,6 +54,7 @@
   photo: "biprateep-dey.jpg"
   bio: ""
   website: "https://biprateep.de/"
+  tutorial_url: "https://biprateep.de/tutorials/uq-statstro-2026.html"
 
 # ML tutorial — Kartheik Iyer (Columbia); attending remotely
 - name: "Kartheik Iyer"
@@ -63,6 +65,7 @@
   photo: "kartheik-iyer.jpg"
   bio: ""
   website: "https://kartheikiyer.github.io/"
+  tutorial_url: "https://github.com/kartheikiyer/interp-tutorials/blob/main/interp_tutorial_statstro2026.ipynb"
 
 - name: "Connor Stone"
   affiliation: "University of Toronto"
@@ -72,6 +75,7 @@
   photo: "connor-stone.jpg"
   bio: ""
   website: "https://connorjstone.com/"
+  tutorial_url: "https://caskade.readthedocs.io/en/latest/intro.html"
 
 # Contributed science speakers
 - name: "Peter Behroozi"

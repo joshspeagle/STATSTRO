@@ -23,6 +23,7 @@
   speaker: "Yichen Ji"
   affiliation: "University of Toronto"
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
+  tutorial_url: "https://github.com/user-jiyichen/user-jiyichen.github.io/blob/master/files/Bayesian_workflow_tutorial_STATSTRO.ipynb"
 
 - time: "11:30 – 12:00"
   title: "The Ray Tracing Sampler: Bayesian Sampling of Neural Networks for Everyone"
@@ -70,6 +71,7 @@
   speaker: "Connor Stone"
   affiliation: "University of Toronto"
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
+  tutorial_url: "https://caskade.readthedocs.io/en/latest/intro.html"
 
 - time: "16:20 – 16:50"
   title: "Simulation-Based Inference for HI Kinematics in Ultra-Diffuse Galaxies"

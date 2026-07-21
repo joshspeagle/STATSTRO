@@ -19,6 +19,14 @@
     </div>
     {% elsif site.conference.registration_open %}
     <a href="{{ site.conference.registration_url }}" class="btn btn-primary btn-large" target="_blank" rel="noopener noreferrer">Register Now</a>
+    {% elsif site.conference.concluded %}
+    <div class="hero-cta">
+      <a href="{{ '/#thanks' | relative_url }}" class="btn btn-primary btn-large">View Recap &amp; Group Photo</a>
+      <p class="hero-registration-note">
+        STATSTRO 2026 has concluded — thank you to everyone who took part.
+        <a href="{{ '/#tutorials' | relative_url }}">Tutorial materials</a> are now available.
+      </p>
+    </div>
     {% else %}
     <p class="hero-registration-note">Registration is now closed</p>
     {% endif %}

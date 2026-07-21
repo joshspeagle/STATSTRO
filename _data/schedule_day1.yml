@@ -27,6 +27,7 @@
   speaker: "Kartheik Iyer"
   affiliation: "Columbia University"
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab), delivered remotely"
+  tutorial_url: "https://github.com/kartheikiyer/interp-tutorials/blob/main/interp_tutorial_statstro2026.ipynb"
 
 - time: "11:40 – 12:10"
   title: "NeuralDMD: Interpretable Neural Representation of Dynamics from Sparse and Noisy Measurements"
@@ -74,6 +75,7 @@
   speaker: "Biprateep Dey"
   affiliation: "University of Toronto"
   description: "Hands-on coding tutorial — 45 min (Jupyter/Colab)"
+  tutorial_url: "https://biprateep.de/tutorials/uq-statstro-2026.html"
 
 - time: "16:30 – 17:00"
   title: "Confidence, Statistical Evidence and Relative Belief with Applications to a Problem in Particle Physics"

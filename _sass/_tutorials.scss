@@ -1,0 +1,88 @@
+// Tutorial Materials Section
+
+.tutorial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $spacing-lg;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.tutorial-card {
+  position: relative;
+  display: flex;
+  padding: $spacing-xl;
+  padding-left: $spacing-2xl;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-accent);
+  border-radius: $border-radius;
+  box-shadow: var(--color-shadow-sm);
+  transition: all $transition-base;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    box-shadow: var(--color-shadow-md);
+    transform: translateY(-3px);
+
+    .tutorial-link-label {
+      color: var(--session-color, $gold);
+    }
+  }
+}
+
+// Session-coloured accent bar down the left edge of each card.
+.tutorial-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: $border-radius 0 0 $border-radius;
+  background: var(--session-color, $gold);
+}
+
+.tutorial-card-body {
+  min-width: 0;
+}
+
+.tutorial-session-name {
+  display: block;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--session-color, $gold);
+  margin-bottom: $spacing-xs;
+}
+
+.tutorial-title {
+  font-family: $font-body;
+  font-size: $font-size-base;
+  font-weight: 600;
+  color: var(--color-heading);
+  margin-bottom: $spacing-xs;
+  line-height: 1.35;
+}
+
+.tutorial-leader {
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+  margin-bottom: $spacing-md;
+}
+
+.tutorial-affiliation {
+  color: var(--color-text-muted);
+}
+
+.tutorial-link-label {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: var(--color-link);
+  transition: color $transition-base;
+
+  i {
+    font-size: 0.8em;
+    margin-left: 2px;
+  }
+}

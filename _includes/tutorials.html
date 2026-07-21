@@ -1,0 +1,32 @@
+<section class="section tutorials" id="tutorials" aria-label="Tutorial materials">
+  <div class="container">
+    <h2 class="section-title">Tutorial Materials</h2>
+    <p class="section-subtitle">
+      Each thematic session included a hands-on coding tutorial. The materials below were shared
+      by the tutorial leaders and remain freely available to revisit and reuse.
+    </p>
+
+    <div class="tutorial-grid">
+      {% for session in site.data.sessions %}
+      {% assign tut = site.data.speakers | where: "session", session.id | where: "role", "tutorial" | first %}
+      {% if tut and tut.tutorial_url != blank %}
+      <a class="tutorial-card" style="--session-color: {{ session.color }}"
+         href="{{ tut.tutorial_url }}" target="_blank" rel="noopener noreferrer"
+         aria-label="{{ session.name }} tutorial by {{ tut.name }} — {{ tut.talk_title }} (opens in a new tab)">
+        <span class="tutorial-accent" aria-hidden="true"></span>
+        <div class="tutorial-card-body">
+          <span class="tutorial-session-name">{{ session.name }}</span>
+          <h3 class="tutorial-title">{{ tut.talk_title }}</h3>
+          <p class="tutorial-leader">
+            {{ tut.name }}<span class="tutorial-affiliation"> &mdash; {{ tut.affiliation }}</span>
+          </p>
+          <span class="tutorial-link-label">
+            View materials <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          </span>
+        </div>
+      </a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

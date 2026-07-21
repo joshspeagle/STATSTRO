@@ -121,6 +121,24 @@
   color: var(--color-text-muted);
 }
 
+.speaker-materials {
+  margin-top: $spacing-sm;
+  margin-bottom: 0;
+  font-size: $font-size-sm;
+
+  a {
+    font-weight: 600;
+    color: var(--color-link);
+
+    &:hover { color: var(--color-link-hover); }
+
+    i {
+      font-size: 0.8em;
+      margin-left: 2px;
+    }
+  }
+}
+
 // Organizer Cards
 .organizer-grid {
   display: grid;
