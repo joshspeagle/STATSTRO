@@ -6,9 +6,9 @@ Conference website for **STATSTRO 2026: Sampling, Simulation, and Scientific Dis
 **Status: the workshop has concluded — the site is now an archive.** Copy is written in the past tense; the top of the page thanks participants and shows the group photo, and tutorial materials are linked. `_config.yml` sets `conference.concluded: true` and all `registration_open`/`in_person_open`/`online_open` flags to `false`, which drive the "concluded" states in `_includes/hero.html` and `_includes/registration.html`. When cloning for a future edition, flip these flags and revert copy to the present/future tense.
 
 ## Tech Stack
-- **Jekyll** on **GitHub Pages** (auto-builds from `main` branch)
-- Sass for styles, vanilla JS for interactivity
-- No build tools or CI/CD required — push to main and GitHub Pages handles the rest
+- **Jekyll 4.x** (plain `jekyll` gem — *not* the legacy `github-pages` meta-gem), Sass for styles, vanilla JS
+- **Ruby via [mise](https://mise.jdx.dev/)** — version pinned in `.ruby-version` (3.4.1). `Gemfile.lock` is committed for reproducible builds.
+- **Built & deployed by GitHub Actions** (`.github/workflows/jekyll.yml`) on every push to `main` — the repo's Pages source is set to "GitHub Actions", not the legacy branch builder. This keeps local and production on the same current Jekyll/Ruby versions.
 
 ## Design System: "Cosmic Cartographer"
 Sampling and simulation as exploring/mapping unknown territory. Antique star charts meet modern computational aesthetics.
@@ -52,17 +52,26 @@ assets/js/           → Hero animation + main scripts
 assets/images/       → Speaker photos, sponsor logos
 index.html           → Main single-page site
 code-of-conduct.md   → Standalone Code of Conduct page
+.github/workflows/   → GitHub Actions: build with Jekyll + deploy to Pages
+Gemfile(.lock)       → Plain Jekyll 4 toolchain (committed lock)
+.ruby-version        → Ruby version for mise / CI (3.4.1)
 ```
 
 ## Local Development
+Requires Ruby (managed by `mise`, which reads `.ruby-version`):
 ```bash
+# one-time: install the pinned Ruby, then the gems
+mise install            # installs Ruby 3.4.1 per .ruby-version
+gem install bundler
 bundle install
-bundle exec jekyll serve
-# Site available at http://localhost:4000
+
+# run the dev server
+bundle exec jekyll serve   # → http://localhost:4000
 ```
+If `mise` isn't set up yet, see its docs — or use any Ruby ≥ 3.1; only the `github-pages` gem is gone, plain Jekyll 4 is undemanding.
 
 ## Deployment
-Push to `main` branch. GitHub Pages auto-builds and deploys. Domain: statstro.com (DNS configured via Squarespace).
+Push to `main` → the **GitHub Actions** workflow (`.github/workflows/jekyll.yml`) builds with Jekyll and deploys to Pages. No manual steps. The repo's **Settings → Pages → Source must be "GitHub Actions"** (not "Deploy from a branch"). Custom domain statstro.com is preserved via the root `CNAME` file (DNS configured via Squarespace).
 
 ## Image Guidelines
 - **Speaker photos:** Square crop, ~300x300px, JPEG, placed in `assets/images/speakers/`
