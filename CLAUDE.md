@@ -62,7 +62,7 @@ Requires Ruby (managed by `mise`, which reads `.ruby-version`):
 ```bash
 # one-time: install the pinned Ruby, then the gems
 mise install            # installs Ruby 3.4.1 per .ruby-version
-gem install bundler
+gem install bundler -v '~> 2.7'   # match Gemfile.lock's BUNDLED WITH (2.7.x)
 bundle install
 
 # run the dev server
