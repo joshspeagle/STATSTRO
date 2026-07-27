@@ -18,6 +18,7 @@ conference:
   in_person_open: false     # In-person registration has closed (at capacity)
   online_open: false        # Online-only (remote/Zoom) registration is now closed
   concluded: true           # The workshop has taken place — the site is now an archive
+  slides_url: "https://drive.google.com/drive/folders/1p8W904zwuU4qNKPBJE1VQ-Fhc_C4KvNu?usp=sharing"  # Shared Drive folder of speaker slides (leave blank to hide the callout)
 
 # Build settings
 markdown: kramdown

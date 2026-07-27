@@ -1,4 +1,75 @@
-// Tutorial Materials Section
+// Slides & Tutorial Materials Section
+
+// Callout linking to the shared Drive folder of speaker slides.
+.slides-callout {
+  display: flex;
+  gap: $spacing-lg;
+  align-items: flex-start;
+  max-width: 1000px;
+  margin: 0 auto $spacing-3xl;
+  padding: $spacing-xl;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-accent);
+  border-left: 4px solid $gold;
+  border-radius: $border-radius;
+  box-shadow: var(--color-shadow-sm);
+  transition: all $transition-base;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    box-shadow: var(--color-shadow-md);
+    transform: translateY(-3px);
+
+    .tutorial-link-label {
+      color: $gold;
+    }
+  }
+
+  @media (max-width: $bp-sm) {
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+}
+
+.slides-callout-icon {
+  flex-shrink: 0;
+  font-size: $font-size-2xl;
+  line-height: 1;
+  color: $gold;
+}
+
+.slides-callout-body {
+  min-width: 0;
+}
+
+.slides-callout-title {
+  display: block;
+  font-family: $font-heading;
+  font-size: $font-size-xl;
+  color: var(--color-heading);
+  margin-bottom: $spacing-xs;
+}
+
+.slides-callout-text {
+  display: block;
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+  margin-bottom: $spacing-md;
+}
+
+.tutorials-subhead {
+  max-width: 1000px;
+  margin: 0 auto $spacing-xs;
+  color: var(--color-heading);
+}
+
+.tutorials-subhead-text {
+  max-width: 1000px;
+  margin: 0 auto $spacing-lg;
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+}
 
 .tutorial-grid {
   display: grid;
