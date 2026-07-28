@@ -34,11 +34,12 @@ All conference content lives in `_data/` YAML files. To update:
 - **Sessions:** Edit `_data/sessions.yml` — the four thematic tracks (`ml`, `uq`, `sampling`, `sbi`) with their display name and accent `color`. Speakers, posters, schedule items, and the tutorials section all key off these session `id`s and inherit the session color.
 - **Organizers:** Edit `_data/organizers.yml`
 - **Sponsors:** Edit `_data/sponsors.yml`
-- **Tutorial materials:** Add a `tutorial_url` to a speaker (role `tutorial`) in `speakers.yml` — this drives the "Tutorial Materials" section (`_includes/tutorials.html`) and the link on the speaker card. The same URL is also duplicated on the matching `tutorial` item in the schedule YAML so the schedule stays self-contained.
+- **Tutorial materials:** Add a `tutorial_url` to a speaker (role `tutorial`) in `speakers.yml` — this drives the "Slides & Tutorial Materials" section (`_includes/tutorials.html`) and the link on the speaker card. The same URL is also duplicated on the matching `tutorial` item in the schedule YAML so the schedule stays self-contained.
+- **Speaker slides:** `conference.slides_url` in `_config.yml` points at the shared Google Drive folder of talk slides. It renders as the "Speaker Slides" callout at the top of the same section; blank it out to hide the callout entirely.
 
 Organizers can edit these directly in the GitHub web UI — no local setup needed.
 
-**Sections / includes:** `_layouts/default.html` composes the single page from `_includes/*.html`. Archival additions: `thanks.html` (recap + group photo, first in `<main>`) and `tutorials.html` (materials grid, after the schedule). Section background alternates automatically via `.section:nth-child(even)` in `_sass/_base.scss` — inserting or reordering sections re-flows the light/dark rhythm, which is expected.
+**Sections / includes:** `_layouts/default.html` composes the single page from `_includes/*.html`. Archival additions: `thanks.html` (recap + group photo, first in `<main>`) and `tutorials.html` (speaker-slides callout + tutorial materials grid, after the schedule; anchor id stays `#tutorials`, nav label is "Materials"). Section background alternates automatically via `.section:nth-child(even)` in `_sass/_base.scss` — inserting or reordering sections re-flows the light/dark rhythm, which is expected.
 
 ## File Organization
 ```

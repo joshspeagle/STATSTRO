@@ -1,9 +1,38 @@
-<section class="section tutorials" id="tutorials" aria-label="Tutorial materials">
+<section class="section tutorials" id="tutorials" aria-label="Slides and tutorial materials">
   <div class="container">
-    <h2 class="section-title">Tutorial Materials</h2>
+    <h2 class="section-title">Slides &amp; Tutorial Materials</h2>
     <p class="section-subtitle">
+      Speakers and tutorial leaders generously shared the materials below, which remain
+      freely available to revisit and reuse.
+    </p>
+
+    {% if site.conference.slides_url != blank %}
+    <a class="slides-callout" href="{{ site.conference.slides_url }}"
+       target="_blank" rel="noopener noreferrer"
+       aria-labelledby="slides-callout-title slides-callout-newtab"
+       aria-describedby="slides-callout-text">
+      <span class="slides-callout-icon" aria-hidden="true">
+        <i class="fa-solid fa-file-powerpoint"></i>
+      </span>
+      <span class="slides-callout-body">
+        <span class="slides-callout-title" id="slides-callout-title">Speaker Slides</span>
+        <span class="slides-callout-text" id="slides-callout-text">
+          Slide decks from many of our keynote, contributed, and lightning talks are collected
+          in a shared Google Drive folder. Not every talk is included &mdash; presenters shared
+          their slides at their own discretion.
+        </span>
+        <span class="tutorial-link-label">
+          Browse the slides folder <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          <span class="visually-hidden" id="slides-callout-newtab">(opens in a new tab)</span>
+        </span>
+      </span>
+    </a>
+    {% endif %}
+
+    <h3 class="tutorials-subhead" id="tutorial-materials">Tutorial Materials</h3>
+    <p class="tutorials-subhead-text">
       Each thematic session included a hands-on coding tutorial. The materials below were shared
-      by the tutorial leaders and remain freely available to revisit and reuse.
+      by the tutorial leaders.
     </p>
 
     <div class="tutorial-grid">
@@ -16,7 +45,7 @@
         <span class="tutorial-accent" aria-hidden="true"></span>
         <div class="tutorial-card-body">
           <span class="tutorial-session-name">{{ session.name }}</span>
-          <h3 class="tutorial-title">{{ tut.talk_title }}</h3>
+          <h4 class="tutorial-title">{{ tut.talk_title }}</h4>
           <p class="tutorial-leader">
             {{ tut.name }}<span class="tutorial-affiliation"> &mdash; {{ tut.affiliation }}</span>
           </p>
