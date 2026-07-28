@@ -17,13 +17,20 @@
   text-decoration: none;
   color: inherit;
 
-  &:hover {
+  // Keyboard focus gets the same lift as hover, plus a visible outline.
+  &:hover,
+  &:focus-visible {
     box-shadow: var(--color-shadow-md);
     transform: translateY(-3px);
 
     .tutorial-link-label {
       color: $gold;
     }
+  }
+
+  &:focus-visible {
+    outline: 3px solid $gold;
+    outline-offset: 3px;
   }
 
   @media (max-width: $bp-sm) {
@@ -92,13 +99,19 @@
   text-decoration: none;
   color: inherit;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     box-shadow: var(--color-shadow-md);
     transform: translateY(-3px);
 
     .tutorial-link-label {
       color: var(--session-color, $gold);
     }
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--session-color, $gold);
+    outline-offset: 3px;
   }
 }
 

@@ -9,19 +9,21 @@
     {% if site.conference.slides_url != blank %}
     <a class="slides-callout" href="{{ site.conference.slides_url }}"
        target="_blank" rel="noopener noreferrer"
-       aria-label="Open the shared Google Drive folder of speaker slides (opens in a new tab)">
+       aria-labelledby="slides-callout-title slides-callout-newtab"
+       aria-describedby="slides-callout-text">
       <span class="slides-callout-icon" aria-hidden="true">
         <i class="fa-solid fa-file-powerpoint"></i>
       </span>
       <span class="slides-callout-body">
-        <span class="slides-callout-title">Speaker Slides</span>
-        <span class="slides-callout-text">
+        <span class="slides-callout-title" id="slides-callout-title">Speaker Slides</span>
+        <span class="slides-callout-text" id="slides-callout-text">
           Slide decks from many of our keynote, contributed, and lightning talks are collected
           in a shared Google Drive folder. Not every talk is included &mdash; presenters shared
           their slides at their own discretion.
         </span>
         <span class="tutorial-link-label">
           Browse the slides folder <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          <span class="visually-hidden" id="slides-callout-newtab">(opens in a new tab)</span>
         </span>
       </span>
     </a>
